@@ -23,6 +23,7 @@
 - フレームワーク：https://drive.google.com/file/d/1s3uLHHo8phah_HsUBP7ANJoqNmFi0AkH/view?usp=sharing
 - ER図：https://drive.google.com/file/d/1RUkc-RbmabnTBp5EvdOj9KHCMm_VqYdu/view?usp=sharing
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1JUIzoOUOiG_pJQc4UNfTiXPTOwx1XDrcsCxIPj6JK70/edit?usp=sharing
+- アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1XYFIGh5ef1cC_JMlSYkiL2Evvxg5U4NEK2lC4NyYQKs/edit?usp=sharing
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1Jq56_Ko5ymBgjyjmGk8KeJUPmFzBYqclVHiHuVsO22Y/edit?usp=sharing
