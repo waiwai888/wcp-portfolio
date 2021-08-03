@@ -1,0 +1,81 @@
+<section id="mv">
+  <div class="jumbotron jumbotron-extend text-center">
+    <div class="container-fluid jumbotron-container">
+      <h1 class="site-name">Campist</h1>
+      <p><a class="btn btn-black" href="/users/sign_up" role="button">SignUp(free)</a></p>
+    </div>
+  </div>
+</section>
+<!--Aboutページ-->
+<section id="about">
+  <div class="container  bg-light text-center">
+    <h2 class="heading">About</h2>
+    <div class="about-content flex-row">
+      <div class="left-content", style: "display: inline-block;">
+        <!--image入れる-->
+      </div>
+      <div class="right-content", style: "display: inline-block;">
+        <ul class="heading-text">
+          <li>Campistは、キャンプでのあらゆる"コーディネート"を楽しむSNSです</li>
+          <li>多くの人のコーディネイト（テントのレイアウトや服装、雑貨など）を参考にして、よりキャンプを楽しもう！</li>
+          <li>自分のコーディネイトの記録としても活用でき、誰かの参考になれるかも</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Featureページ-->
+<section id="feature">
+  <div class="container text-center">
+    <h2 class="heading">Feature</h2>
+    <p class="heading-text"></p>
+    <div class="row feature-group">
+      <div class="feature text-center">
+        <i class="fas fa-users"></i>
+        <h3 class="feature-title">Follow</h3>
+        <p class="feature-text">自分の"好き"に近い人と繋がることができます。お互いの楽しみ方を真似して、更なるキャプの楽しみ方を知ろう！</p>
+      </div>
+      <div class="feature text-center">
+        <i class="fas fa-comments"></i>
+        <h3 class="feature-title">Comment</h3>
+        <p class="feature-text">良いと思ったコーデディネートにはコメントをして感想を残そう！</p>
+      </div>
+      <div class="feature text-center">
+        <i class="fas fa-handshake"></i>
+        <h3 class="feature-title">Share</h3>
+        <p class="feature-text">自分のコーディネートを投稿しよう！思い出として残しておくことも、誰かと共有することもできます！</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Contactページ-->
+<section id="contact">
+  <div class="container  bg-light text-center">
+    <h2 class="heading">Contact</h2>
+    <p class="heading-text"></p>
+    <div class="contact-group">
+      <div class="row">
+        <div class="left-contact col-6">
+          <h3 class="">Mail</h3>
+          <%= mail_to 'user@text.com' %>
+          <h3 class="">Tel</h3>
+          <%= link_to '01234567890' %>
+        </div>
+        <div class="right-contact col-6">
+          <h3 class="">SNS</h3>
+            <div class="right-contact-content">
+              <%= link_to do %>
+                <i class="fa fa-facebook fa-5x"></i>
+              <% end %>
+              <%= link_to do %>
+                <i class="fa fa-twitter fa-5x"></i>
+              <% end %>
+              <%= link_to do %>
+                <i class="fa fa-instagram fa-5x"></i>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
