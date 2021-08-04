@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_091201) do
+ActiveRecord::Schema.define(version: 2021_08_04_021529) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_08_02_091201) do
     t.boolean "checked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "post_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_08_02_091201) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "image_id"
+    t.string "image_id"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,6 +94,11 @@ ActiveRecord::Schema.define(version: 2021_08_02_091201) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "nickname"
+    t.string "account_name"
+    t.string "introduction"
+    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

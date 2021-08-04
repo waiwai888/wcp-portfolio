@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Post edit</h2>
+  <%= form_with model: @post, local:true do |f| %>
+    <%= f.label :body, "本文" %>
+    <%= f.text_area :body %>
+    <%= f.submit 'Update', class: 'btn btn-success' %>
+  <% end %>
+</div>

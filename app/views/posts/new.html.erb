@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>New Post</h1>
+  <%= form_with model: @post, local:true do |f| %>
+    <%= f.label :image, "投稿画像" %>
+    <%= f.attachment_field :image %>
+    <%= f.label :body, "本文" %>
+    <%= f.text_area :body %>
+    <%= f.submit 'Create', class: 'btn btn-success' %>
+  <% end %>

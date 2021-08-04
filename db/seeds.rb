@@ -8,5 +8,6 @@
 
 User.create(
   email: "user@test",
-  password: "user@test"
+  password: "user@test",
+  nickname: "test"
 )
