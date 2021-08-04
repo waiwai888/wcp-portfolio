@@ -3,8 +3,10 @@
     <!--left-side-->
     <div class="col-8">
       <%= attachment_image_tag(@post, :image, :fill, 400, 400, fallback: "no_image.jpg") %>
-      <%= attachment_image_tag(@post.user, :profile_image, :fill, 50, 50, fallback: "no_image.png") %>
-      <!--いいねボタン設置-->
+      <%= link_to user_path(@post.user) do %>
+        <%= attachment_image_tag(@post.user, :profile_image, :fill, 50, 50, fallback: "no_image.png") %>
+      <% end %>
+      <%= render 'layouts/favorite', post: @post %>
       <!--フォローボタン設置-->
       <%= link_to user_path(@post.user) do %>
         <%= @post.user.nickname %>
