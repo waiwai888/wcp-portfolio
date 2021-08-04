@@ -21,6 +21,11 @@ class User < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
+  
+  validates :name, presence: true, uniqueness: true
+  validates :account_name, presence: true, uniqueness: true
+  validates :nickname, presence: true
+  validates :account_name, length: { minimum: 6 }
 
   def follow(user_id)
     relationships.create(followed_id: user_id)

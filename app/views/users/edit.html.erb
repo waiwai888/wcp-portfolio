@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>プロフィール編集</h2>
+    <%= form_with model: @user, local:true do |f| %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png"%>
+      <%= f.label :profile_image, "プロフィール画像" %>
+      <%= f.attachment_field :profile_image %>
+      <%= f.label :nickname, "ニックネーム" %>
+      <%= f.text_field :nickname %>
+      <%= f.label :account_name, "アカウント名" %>
+      <%= f.text_field :account_name %>
+      <%= f.label :introduction, "自己紹介文" %>
+      <%= f.text_field :introduction %>
+      <%= f.submit "Update" %>
+    <% end %>
+</div>
