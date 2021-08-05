@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get '/search', to: 'searches#search'
-  get 'relationships/create'
-  get 'relationships/destroy'
 
   resources :users, only: [:show, :edit, :update]do
     resources :relationships, only: [:create, :destroy]

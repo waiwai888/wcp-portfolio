@@ -17,9 +17,13 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   #フォロー機能
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 自分をフォローしているユーザーを探す→forign_keyにfollowed_id（自分のuser.id）を指定して探す
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy 
+  # reverse_of_relationshipsを通じて、自分をフォローしている人たち（followers）を抽出
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  # 自分がフォローしているユーザーを探す→foreign_keyにfollower_id（自分のuser.id）を指定して探す
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # relationshipsを通じて、自分がフォローしている人たち（followings）を抽出
   has_many :followings, through: :relationships, source: :followed
 
   validates :name, presence: true, uniqueness: true

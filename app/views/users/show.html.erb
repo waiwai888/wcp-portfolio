@@ -3,11 +3,23 @@
   <div class="row">
     <div class=" text-center">
       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.png"%>
-      <%= current_user.nickname %>
-      @<%= current_user.account_name %>
+      <%= @user.nickname %>
+      @<%= @user.account_name %>
       <!--follower|followed表示-->
-      <%= current_user.introduction %>
-      <!--follow/unfollowボタン表示-->
+      followings <%= link_to user_followings_path(@user.id) do %><%= @user.followings.count %><% end %> | followers <%= link_to user_followers_path(@user.id) do %><%= @user.followers.count %><% end %>
+      <%= @user.introduction %>
+      <!--フォローボタン設置-->
+      <% if current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to "unfollow", user_relationship_path(@user.id), method: :delete, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "follow", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
+        <% end %>
+      <% end %>
+      <!--DMボタン設置-->
+      <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+        <%= link_to 'chat', chat_path(@user.id), class: "ml-3" %>
+      <% end %>
     </div>
   </div>
   <!--current_userの全投稿-->
