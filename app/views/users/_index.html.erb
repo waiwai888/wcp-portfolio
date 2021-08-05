@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>nick name</th>
+      <th>account name</th>
+      <th>followers</th>
+      <th>followings</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.png") %></td>
+        <td><%= user.nickname %></td>
+        <td>@<%= user.account_name %></td>
+        <td><%= user.followers.count %></td>
+        <td><%= user.followings.count %></td>
+        <td>
+          <% if current_user != user %>
+            <% if current_user.following?(user) %>
+              <%= link_to "unfollow", user_relationship_path(user.id), method: :delete, class: "btn btn-primary" %>
+            <% else %>
+              <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
