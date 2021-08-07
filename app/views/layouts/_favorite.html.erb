@@ -1,4 +1,4 @@
-<% unless post.user = current_user %>
+<% unless post.user == current_user %>
   <% if post.favorited_by?(current_user) %>
     <p>
       <%= link_to post_favorites_path(post), method: :delete do %>

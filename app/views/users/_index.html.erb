@@ -12,7 +12,7 @@
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.png") %></td>
+        <td><%= attachment_image_tag(user, :profile_image, size:'200x200', fallback: "no_image.png") %></td>
         <td><%= user.nickname %></td>
         <td>@<%= user.account_name %></td>
         <td><%= user.followers.count %></td>
@@ -20,7 +20,7 @@
         <td>
           <% if current_user != user %>
             <% if current_user.following?(user) %>
-              <%= link_to "unfollow", user_relationship_path(user.id), method: :delete, class: "btn btn-primary" %>
+              <%= link_to "unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
             <% else %>
               <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
             <% end %>

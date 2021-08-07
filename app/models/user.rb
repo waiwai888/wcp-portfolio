@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   #フォロー機能
   # 自分をフォローしているユーザーを探す→forign_keyにfollowed_id（自分のuser.id）を指定して探す
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy 
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # reverse_of_relationshipsを通じて、自分をフォローしている人たち（followers）を抽出
   has_many :followers, through: :reverse_of_relationships, source: :follower
   # 自分がフォローしているユーザーを探す→foreign_keyにfollower_id（自分のuser.id）を指定して探す
@@ -46,11 +46,12 @@ class User < ApplicationRecord
   end
 
   def create_notification_follow!(current_user)
-    follow_exist = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    follow_exist = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
     if follow_exist.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
-        action: 'follow'
+        action: 'follow',
+        checked: false
         )
         notification.save if notification.valid?
     end
