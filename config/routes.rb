@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#search'
 
   resources :users, only: [:show, :edit, :update]do
-    resources :relationships, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy]
     resources :notifications, only: [:index, :create, :destroy, :all_destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
   	get 'followers' => 'relationships#followers', as: 'followers'

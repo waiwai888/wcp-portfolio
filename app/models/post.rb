@@ -16,26 +16,26 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
+
   def create_notification_favorite!(current_user)
     # いいねされているか検索
-    favorite_exist = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? action = ? ", current_user.id, user.id, id, 'favorite')
+    favorite_exist = Notification.where("visiter_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user.id, id, 'favorite')
     # いいねされている場合は通知を作成
     if favorite_exist.blank?
       notification = current_user.active_notifications.new(
         post_id: id,
         visited_id: user_id,
-        action: 'favorite'
+        action: 'favorite',
+        checked: false
         )
+      # いいねした人、された人が同一の場合、通知は確認済みとする
+      if notification.visiter_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
     end
-    # いいねした人、された人が同一の場合、通知は確認済みとする
-    if notification.visitor_id == notification.visited_id
-      notification.checked == true
-    end
-    
-    notification.save if notification.valid?
   end
-  
+
   def create_notification_comment!(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     comment_users = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
@@ -52,7 +52,8 @@ class Post < ApplicationRecord
       post_id: id,
       comment_id: comment_id,
       visited_id: visited_id,
-      action: 'comment'
+      action: 'comment',
+      checked: false
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする
     if notification.visiter_id == notification.visited_id
@@ -60,7 +61,7 @@ class Post < ApplicationRecord
     end
     notification.save! if notification.valid?
   end
-  
-  
+
+
 
 end

@@ -1,34 +1,35 @@
 <div class="container">
   <h1 class="title">Notice</h1>
   <div class="row">
-    <% if @notifications.exists? %>
+    <% if @notifications.present? %>
       <% @notifications.each do |notification| %>
         <!--◯◯さんが-->
-        <%= link_to user_path(notification.visitor_id) do %>
-          <%= attachment_image_tag(notification.visitor, :profile_image, :fill, 100, 100, fallback: "no_image.png", class: "icon_mini") %>
-          <%= notification.visitor.name %><%= 'さんが' %>
+        <%= link_to user_path(notification.visiter_id) do %>
+          <%= attachment_image_tag(notification.visiter, :profile_image, :fill, 100, 100, fallback: "no_image.png", class: "icon_mini") %>
+          <%= notification.visiter.name %><%= 'さんが' %>
         <% end %>
         <!--◯◯しました-->
         <!--フォローの場合-->
-        case notification.action
-        when 'follow' then
+        <% case notification.action %>
+        <% when 'follow' then %>
         <%= 'あなたをフォローしました' %>
         <!--いいねの場合-->
-        when 'favorite' then
+        <% when 'favorite' then %>
         <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
         <%= 'にいいねしました' %>
         <!--コメントの場合-->
-        when 'comment' then
-        <% if notification.post.user_id == visited_id %>
-          <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-        <% else %>
-          <%= link_to post_path(notification.post) do %>
-            <%= attachment_image_tag(notification.post.user, :profile_image, :fill, 100, 100, fallback: "no_image.png", class: "icon_mini") %>
-            <%= notification.post.user.name %>さんの投稿
+        <% when 'comment' then %>
+          <% if notification.post.user_id == notification.visited_id %>
+            <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
+          <% else %>
+            <%= link_to post_path(notification.post) do %>
+              <%= attachment_image_tag(notification.post.user, :profile_image, :fill, 100, 100, fallback: "no_image.png", class: "icon_mini") %>
+              <%= notification.post.user.name %>さんの投稿
+            <% end %>
+            <%= 'にコメントしました' %>
+            <%= @comment %>
+            <%= @time %>
           <% end %>
-          <%= 'にコメントしました' %>
-          <%= @comment %>
-          <%= @time %>
         <% end %>
       <% end %>
     <% else %>
