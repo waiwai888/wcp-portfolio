@@ -5,5 +5,7 @@
     <%= f.attachment_field :image %>
     <%= f.label :body, "本文" %>
     <%= f.text_area :body %>
+    <p>スペースを入力することで複数のタグを登録することができます。</p>
+    <%= f.text_field :tag_name, placeholder: '例）キャンプ飯　男飯' %>
     <%= f.submit 'Create', class: 'btn btn-success' %>
   <% end %>

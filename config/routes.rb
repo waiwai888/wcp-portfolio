@@ -17,5 +17,8 @@ Rails.application.routes.draw do
   end
 
   resources :chats, only: [:show, :create]
+  resources :tags do
+    get 'search', to: 'posts#search'
+  end
 
 end

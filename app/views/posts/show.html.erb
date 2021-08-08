@@ -23,6 +23,10 @@
       <%= @user.account_name %>
       <%= @post.created_at %>
       <%= @post.body %>
+      <!--タグ表示-->
+      <% @post_tags.each do |tag| %>
+        <%= tag.tag_name %>
+      <% end %>
     </div>
     <!--right-side-->
     <div class="col-4">
