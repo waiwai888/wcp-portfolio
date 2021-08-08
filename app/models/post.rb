@@ -9,7 +9,9 @@ class Post < ApplicationRecord
 
   #タグ機能
   has_many :post_tags, dependent: :destroy
+  # dependent: :destroyを付与し、postが削除されると同時にpostとtagsの関係も削除されるように設定
   has_many :tags, through: :post_tags
+  # post_tagsモデル（中間テーブル）を通じてtagsテーブルへアクセス
 
 	validates :body, presence: true
 
@@ -61,7 +63,22 @@ class Post < ApplicationRecord
     end
     notification.save! if notification.valid?
   end
-
-
-
+  
+  def save_tag(tag_list)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil? #postに紐づいているタグが存在する場合、全て抽出
+    old_tags = current_tags - tag_list #取得したpostに紐づくタグから送信されてきたタグを引いたタグを古いタグとする
+    new_tags = tag_list - current_tags #送信されたタグから現在存在するタグを引いたものを新しいタグとする
+    
+    Post.transaction do
+      old_tags.each do |old_tag|
+        tag = Tag.find_by!(tag_name: old_tag)
+        self.post_tags.find_by!(tag_id: tag.id).destroy!
+      end
+    
+      new_tags.each do |new_tag|
+        tag = Tag.find_or_create_by(tag_name: new_tag)
+        self.tags << tag
+      end
+    end
+  end
 end
