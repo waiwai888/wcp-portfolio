@@ -69,7 +69,7 @@ class Post < ApplicationRecord
     old_tags = current_tags - tag_list #取得したpostに紐づくタグから送信されてきたタグを引いたタグを古いタグとする
     new_tags = tag_list - current_tags #送信されたタグから現在存在するタグを引いたものを新しいタグとする
     
-    Post.transaction do
+    Post.transaction do #transaction内の処理がどこかでエラーとなった場合は全てリセットされ、一部分のみで保存されないようにする
       old_tags.each do |old_tag|
         tag = Tag.find_by!(tag_name: old_tag)
         self.post_tags.find_by!(tag_id: tag.id).destroy!
@@ -77,7 +77,7 @@ class Post < ApplicationRecord
     
       new_tags.each do |new_tag|
         tag = Tag.find_or_create_by(tag_name: new_tag)
-        self.tags << tag
+        self.tags << tag #new_tagをpostのタグとして保存
       end
     end
   end
