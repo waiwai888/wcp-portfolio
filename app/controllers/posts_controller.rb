@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:tag_name].split(",") #データベースへ保存時に繰り返し処理でひとつずつ抽出するため、送られてきた値を,で区切って配列化
+    tag_list = params[:post][:tag_name].split(",") #送られてきた値を,で区切って配列化
     if @post.save
       @post.save_tag(tag_list)
       redirect_to posts_path, notice: "successfully"
