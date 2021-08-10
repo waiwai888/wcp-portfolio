@@ -1,39 +1,17 @@
 <div class="container">
   <h1 class="title">Notice</h1>
   <div class="row">
-    <% if @notifications.present? %>
-      <% @notifications.each do |notification| %>
-        <!--◯◯さんが-->
-        <%= link_to user_path(notification.visiter_id) do %>
-          <%= attachment_image_tag(notification.visiter, :profile_image, :fill, 100, 100, fallback: "no_image.png", class: "icon_mini") %>
-          <%= notification.visiter.name %><%= 'さんが' %>
-        <% end %>
-        <!--◯◯しました-->
-        <!--フォローの場合-->
-        <% case notification.action %>
-        <% when 'follow' then %>
-        <%= 'あなたをフォローしました' %>
-        <!--いいねの場合-->
-        <% when 'favorite' then %>
-        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
-        <%= 'にいいねしました' %>
-        <!--コメントの場合-->
-        <% when 'comment' then %>
-          <% if notification.post.user_id == notification.visited_id %>
-            <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-          <% else %>
-            <%= link_to post_path(notification.post) do %>
-              <%= attachment_image_tag(notification.post.user, :profile_image, :fill, 100, 100, fallback: "no_image.png", class: "icon_mini") %>
-              <%= notification.post.user.name %>さんの投稿
-            <% end %>
-            <%= 'にコメントしました' %>
-            <%= @comment %>
-            <%= @time %>
-          <% end %>
-        <% end %>
+    <% @notifications.each do |notification| %>
+      <div class="user-view clearfix ">
+      <%= link_to user_path(notification.visiter) do %>
+        <%= attachment_image_tag notification.visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.png", size: "50x50", class:"profile-img-circle" %>
       <% end %>
-    <% else %>
-      <p>通知はありません</p>
+      <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+      <br>
+      <% if !@comment.nil? %>
+        <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
+      <% end %>
+      </div>
     <% end %>
   </div>
 </div>

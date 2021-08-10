@@ -15,6 +15,8 @@ class NotificationsController < ApplicationController
   end
 
   def all_destroy
+  @notifications = current_user.passive_notifications.destroy_all
+  redirect_back(fallback_location: root_path)
   end
 
 end
