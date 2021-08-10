@@ -81,4 +81,10 @@ class Post < ApplicationRecord
       end
     end
   end
+  
+  #投稿本文の検索（部分検索）
+  def self.search_for(content)
+    Post.where(['body LIKE ?', '%'+content+'%'])
+  end
+  
 end
