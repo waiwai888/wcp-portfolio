@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="title"><%= @user.name %> さんとのChats</h1>
   <div class="message" style="width: 400px;">
-    <%= @chats.each do |chat| %>
+    <% @chats.each do |chat| %>
       <% if chat.user_id == current_user.id %>
         <p style="text align: right;"><%= chat.message %></p>
       <% else %>
