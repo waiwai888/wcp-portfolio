@@ -1,10 +1,9 @@
 module NotificationsHelper
-   def notification_form(notification)
+    def notification_form(notification)
       @visiter = notification.visiter
       @comment = nil
-      @room = nil
-      your_item = link_to 'あなたの投稿', post_path(notification.post_id), style:"font-weight: bold;"
-      #notification.actionがfollowかlikeかcommentか
+      @chat = nil
+      #notification.actionがfollowかlikeかcommentかdmか
       case notification.action
         when "follow" then
           tag.a(notification.visiter.name, href:user_path(@visiter), style:"font-weight: bold;")+"があなたをフォローしました"
@@ -14,7 +13,7 @@ module NotificationsHelper
           @comment = PostComment.find_by(id: notification.comment_id)&.comment
           tag.a(@visiter.name, href:user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:post_path(notification.post_id), style:"font-weight: bold;")+"にコメントしました"
         when "dm" then
-          @room = Chat.find_by(id: notification.chat_id)&.message
+          @chat = Chat.find_by(id: notification.chat_id)&.message
           tag.a(@visiter.name, href:user_path(@visiter), style:"font-weight: bold;")+"があなたに"+tag.a('メッセージ',href:chat_path(notification.chat_id), style:"font-weight: bold;")+"を送りました"
       end
     end

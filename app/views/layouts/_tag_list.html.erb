@@ -1,5 +1,7 @@
 <% tag_list.each do |tag| %>
-  <%= link_to tag_search_path(tag_id: tag.id) do %>
-    <%= tag.tag_name %>
-  <% end %>
+  <div class="tag-list">
+    <%= link_to tag_search_path(tag_id: tag.id), class: "link" do %>
+      # <%= tag.tag_name %>
+    <% end %>
+  </div>
 <% end %>
