@@ -11,12 +11,13 @@
 
   <body>
     <%= render 'layouts/header'%>
-      <main>
-        <% if user_signed_in? %>
-          <%= render 'layouts/search' %>
-        <% end %>
-        <p id="notice"><%= notice %></p>
-      </main>
-    <%= yield %>
+    <main>
+      <% if notice.present? %>
+      <div id="notice-box" class="position-fixed w-100 text-center">
+        <div id="notice" class="d-inline-block"><%= notice %></div>
+      </div>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

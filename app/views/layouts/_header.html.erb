@@ -21,6 +21,11 @@
           <li><%= link_to 'LogIn', new_user_session_path, class: 'nav-link text-light'%></li>
         <% end %>
         </ul>
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <%= render 'layouts/search' %>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>
