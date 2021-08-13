@@ -28,13 +28,7 @@
 .mv-title {
     // padding-top: 25vh;
     font-family: 'Raleway', sans-serif;
-    font-size: calc(20px + 3vw);
-}
-
-.site-name {
-    margin-bottom: 40px;
-    font-family: 'Playfair Display', serif;
-    color: #fff;
+    font-size: calc(40px + 2vw);
 }
 
 .btn-black:hover {
@@ -84,4 +78,5 @@
     background-color: rgba(255, 255, 255, .5);
     padding: 1rem 3rem !important;
     margin: 0 !important;
+    border-radius: 3rem;
 }
