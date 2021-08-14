@@ -1,8 +1,13 @@
 <div class="container">
-  <h2>Post edit</h2>
-  <%= form_with model: @post, local:true do |f| %>
-    <%= f.label :body, "本文" %>
-    <%= f.text_area :body %>
-    <%= f.submit 'Update', class: 'btn btn-success' %>
-  <% end %>
+  <h4 class="page-heading">Post edit</h4>
+  <div class="edit-form">
+    <%= form_with model: @post, local:true do |f| %>
+      <%= f.label :body, "本文", class: "d-block mt-3" %>
+      <%= f.text_area :body, class: "d-block mt-2" %>
+      <%= f.submit 'Update', class: 'btn btn-success d-block mt-3' %>
+    <% end %>
+  </div>
+  <div class="post-back mt-3">
+    <%= link_to "<< back", post_path(@post) %>
+  </div>
 </div>
