@@ -38,4 +38,7 @@
   <div class="row">
     <%= render 'posts/feeds', posts: @posts %>
   </div>
+  <div class="page mt-4 mb-5">
+    <%= paginate @posts %>
+  </div>
 </div>

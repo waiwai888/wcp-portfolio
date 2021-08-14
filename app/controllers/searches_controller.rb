@@ -1,5 +1,7 @@
 class SearchesController < ApplicationController
   
+
+  
   def search
 		@content = params[:content]
 		@posts = Post.search_for(@content).page(params[:page]).per(8)
