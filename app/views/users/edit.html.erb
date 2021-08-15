@@ -1,15 +1,15 @@
 <div class="container">
   <h2>プロフィール編集</h2>
     <%= form_with model: @user, local:true do |f| %>
-      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png"%>
-      <%= f.label :profile_image, "プロフィール画像" %>
+      <%= f.label :profile_image, "プロフィール画像", class: "d-block" %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class: "rounded-circle d-insline-block", style: "object-fit: cover;"%>
       <%= f.attachment_field :profile_image %>
-      <%= f.label :nickname, "ニックネーム" %>
+      <%= f.label :nickname, "ニックネーム", class: "d-block mt-3"  %>
       <%= f.text_field :nickname %>
-      <%= f.label :account_name, "アカウント名" %>
+      <%= f.label :account_name, "アカウント名", class: "d-block mt-3" %>
       <%= f.text_field :account_name %>
-      <%= f.label :introduction, "自己紹介文" %>
+      <%= f.label :introduction, "自己紹介文", class: "d-block mt-3" %>
       <%= f.text_field :introduction %>
-      <%= f.submit "Update" %>
+      <%= f.submit "Update", class: "btn btn-success d-block mt-3" %>
     <% end %>
 </div>

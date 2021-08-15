@@ -1,7 +1,8 @@
 <div class="container">
-  <h1 class="followers">Followers</h1>
+  <h4 class="page-heading">Followers</h4>
   <% if @users.exists? %>
     <%= render 'users/index', users: @users %>
+    <%= paginate @users %>
   <% else %>
     <p>ユーザーはいません</p>
   <% end %>

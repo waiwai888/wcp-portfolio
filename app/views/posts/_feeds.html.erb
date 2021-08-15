@@ -8,25 +8,25 @@
           <%= attachment_image_tag(post, :image, class: "img d-block mx-auto", style: "background-image: none;") %>
         <% end %>
       </div>
-  
+
       <div class="row mt-3">
-          <!--アイコン-->
-          <div class="sub col-md-4">
-            <%= link_to user_path(post.user) do %>
-              <%= attachment_image_tag post.user, :profile_image, :fill,50,50, format: "jpeg", fallback: "no_image.png", size: '50x50', class: "rounded-circle d-block mx-auto" %>
-            <% end %>
-          </div>
-          <!--ニックネーム・アカウント名-->
-          <div class="name text-center col-md-4 m-auto">
-            <p><strong><%= link_to post.user.nickname, user_path(post.user), class: "link" %></strong></p>
-            <p><%= link_to post.user.account_name, user_path(post.user), class: "link" %></p>
-          </div> 
-          <!--いいねボタン設置-->
-          <div class="favorite col-md-4 d-block mx-auto">
-            <%= render 'layouts/favorite', post: post %>
-          <!--フォローボタン設置-->
-            <%= render 'layouts/follow', user: post.user %>
-          </div>
+        <!--アイコン-->
+        <div class="sub col-md-4">
+          <%= link_to user_path(post.user) do %>
+            <%= attachment_image_tag post.user, :profile_image, :fill,70,70, format: "jpeg", fallback: "no_image.png", size: "70x70", class: "rounded-circle d-block mx-auto" %>
+          <% end %>
+        </div>
+        <!--ニックネーム・アカウント名-->
+        <div class="name text-center col-md-4 m-auto">
+          <p><strong><%= link_to post.user.nickname, user_path(post.user), class: "link" %></strong></p>
+          <p><%= link_to post.user.account_name, user_path(post.user), class: "link" %></p>
+        </div>
+        <!--いいねボタン設置-->
+        <div class="favorite col-md-4 d-block mx-auto">
+          <%= render 'layouts/favorite', post: post %>
+        <!--フォローボタン設置-->
+          <%= render 'layouts/follow', user: post.user %>
+        </div>
       </div>
     </div>
   </div>

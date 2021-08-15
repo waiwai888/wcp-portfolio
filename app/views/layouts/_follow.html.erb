@@ -1,11 +1,11 @@
 <% if current_user != user %>
   <% if current_user.following?(user) %>
     <%= link_to user_relationships_path(user.id), method: :delete, class: "btn btn-success icon_font over btn-sm" do %>
-      <i class="fas fa-user-plus"></i><br>unfollow
+      <i class="fas fa-user-plus mr-1"></i>unfollow
     <% end %>  
   <% else %>
     <%= link_to user_relationships_path(user.id), method: :post, class: "btn btn-success icon_font over btn-sm" do %>
-      <i class="fas fa-user-plus"></i><br>follow
+      <i class="fas fa-user-plus mr-1"></i>follow
     <% end %>
   <% end %>
 <% end %>
