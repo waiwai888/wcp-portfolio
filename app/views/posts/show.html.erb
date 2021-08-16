@@ -26,8 +26,10 @@
           </p>
         </div>
         <div class="col-md-3">
-          <!--いいねボタン設置-->
-          <%= render 'layouts/favorite', post: @post %>
+          <div id="favorite_buttons_<%= @post.id %>">
+            <!--いいねボタン設置-->
+            <%= render 'layouts/favorite', post: @post %>
+          </div>
         </div>
         <div class="col-md-3">
           <!--フォローor編集・削除ボタン設置-->
@@ -39,7 +41,9 @@
               <i class="fas fa-trash-alt"></i>
             <% end %>
           <% else %>
-            <%= render 'layouts/follow', user: @user %>
+            <div id="follow_btn_<%= @post.user %>">
+              <%= render 'layouts/follow', user: @user %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -63,8 +67,10 @@
 
     <!--right-side-->
     <div class="col-md-4">
-      <!--コメント入力欄設置--> <!--コメント一覧表示-->
-      <%= render 'post_comments/comment', post: @post, post_comment: @post_comment, post_comments: @post_comments %>
+      <div id="comment_create_<%= @post.id%>">
+        <!--コメント入力欄設置--> <!--コメント一覧表示-->
+        <%= render 'post_comments/comment', post: @post, post_comment: @post_comment %>
+      </div>
     </div>
   </div>
 </div>
