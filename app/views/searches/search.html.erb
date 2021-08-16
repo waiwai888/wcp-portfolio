@@ -1,10 +1,12 @@
 <div class="container">
   <div class="posts_search">
     <% if @posts.empty? %>
-      <h3>"<%= @content %>"　に関する投稿はありません</h3>
+      <h3 class="page-heading">"<%= @content %>"　に関する投稿はありません</h3>
     <% else %>
-      <h3>"<%= @content %>" に関する投稿<span>（全 <%= @post_count %> 件)</span></h3>
-      <%= render 'posts/feeds', posts: @posts %>
+      <h3 class="page-heading">"<%= @content %>" に関する投稿<span>（全 <%= @post_count %> 件)</span></h3>
+      <div class="row">
+        <%= render 'posts/feeds', posts: @posts %>
+      </div>
     <% end %>
   </div>
 </div>
