@@ -56,6 +56,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'pry-byebug'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -69,7 +70,7 @@ gem 'font-awesome-sass', '~> 5.13'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
-gem 'pry-byebug'
+
 
 gem 'dotenv-rails'
 group :production do
