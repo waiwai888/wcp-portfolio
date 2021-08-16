@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="title">Notice</h1>
+  <div class="row">
+    <% @notifications.each do |notification| %>
+      <div class="user-view clearfix ">
+      <%= link_to user_path(notification.visiter) do %>
+        <%= attachment_image_tag notification.visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.png", size: "50x50", class:"profile-img-circle" %>
+      <% end %>
+      <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+      <br>
+      <% if !@comment.nil? %>
+        <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<section id="mv">
+  <div class="slider_box" style="position: relative;">
+    <div class="mv-head">
+      <h1 class="mv-title">Campist</h1>
+      <p class="mv-text"><%= link_to "Sign Up(free)", new_user_registration_path, class: "btn btn-success rounded-pill" %></p>
+    </div>
+    <div class="bxslider">
+      <% @posts.each do |post| %>
+        <li><%= attachment_image_tag(post, :image, class: "top-img") %></li>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!--Aboutページ-->
+<section id="about">
+  <%= render 'homes/about' %>
+</section>
+<!--Featureページ-->
+<section id="feature">
+  <%= render 'homes/feature' %>
+</section>
+<!--Contactページ-->
+<section id="contact">
+  <%= render 'homes/contact' %>
+</section>

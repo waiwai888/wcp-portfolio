@@ -1,0 +1,82 @@
+// Place all the styles related to the Homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.top-img{
+  position: absolute;
+  top: 0px;
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bx-wrapper{
+  border:none!important;
+  box-shadow: none!important;
+}
+
+.slider_box{
+  width: 100%;
+}
+
+.bx-viewport .bxslider li{
+  height: 80vh;
+  display: block!important;
+  position: relative;
+  display: none;
+}
+
+.mv-title {
+    // padding-top: 25vh;
+    font-family: 'Raleway', sans-serif;
+    font-size: calc(40px + 2vw);
+}
+
+.btn-black:hover {
+     background-color: #fff;
+     color: #000;
+}
+
+#about,#contact {
+    background-color: white;
+}
+
+.about-image {
+    width: 35vh;
+    height: 25vh;
+    margin: 0 auto;
+    border-radius: 20%;
+}
+
+.top-heading {
+    background-color: #e8e8e8;
+    background: rgba(128, 128, 0, .3);
+    padding: 1rem;
+    border-radius: 30px;
+    width: 20vh;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#mv {
+    position: relative;
+}
+
+.mv-content {
+    position:absolute;
+    left:  45rem;
+    top: 10rem;
+    color: #f5f5f5;
+}
+
+.mv-head {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, .5);
+    padding: 1rem 3rem !important;
+    margin: 0 !important;
+    border-radius: 3rem;
+}

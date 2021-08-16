@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/tag_list', tag_list: @tag_list %>
+  </div>
+  <h1 class="title">Feeds</h1>
+  <div class="row">
+    <%= render 'feeds', posts: @posts %>
+  </div>
+  <div class="page mt-4 mb-5">
+    <%= paginate @posts %>
+  </div>
+</div>
