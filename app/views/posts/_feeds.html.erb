@@ -23,9 +23,13 @@
         </div>
         <!--いいねボタン設置-->
         <div class="favorite col-md-4 d-block mx-auto">
-          <%= render 'layouts/favorite', post: post %>
+          <div id="favorite_buttons_<%= post.id %>">
+            <%= render 'layouts/favorite', post: post %>
+          </div>
         <!--フォローボタン設置-->
-          <%= render 'layouts/follow', user: post.user %>
+          <div id="follow_btn_<%= post.user %>">
+            <%= render 'layouts/follow', user: post.user %>
+          </div>
         </div>
       </div>
     </div>

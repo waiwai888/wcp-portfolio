@@ -6,19 +6,18 @@ class ChatsController < ApplicationController
     @room = @chat.room
     @chat.save
     @chat.create_notification_dm!(current_user, @chat)
-    redirect_back(fallback_location: root_path)
+    @chats = @room.chats
   end
 
   def show
-    @user = User.find(partner_user.first)
+    @user = User.find(params[:id])
     rooms = current_user.user_rooms.pluck(:room_id)
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
 
-    # やりとりをしたことがある場合
-    unless
-      user_rooms.nil?
+    # やりとりをしたことがある場合roomを抽出
+    unless user_rooms.nil?
       @room = user_rooms.room
-    # やりとりをしたことがない場合
+    # やりとりをしたことがない場合roomを新規作成
     else
       @room = Room.new
       @room.save
@@ -39,16 +38,16 @@ class ChatsController < ApplicationController
 
    # 相互フォローで無い場合はマイページへ遷移
   def follow_each_other
-    chat_user = partner_user
-    user = User.find(chat_user.first)
-    unless current_user.following?(user) && user.following?(current_user)
+    @user = User.find(params[:id])
+    unless current_user.following?(@user) && @user.following?(current_user)
       redirect_to user_path(current_user)
     end
   end
 
-  def partner_user
-    room = Chat.find(params[:id]).room
-    UserRoom.where(room_id: room.id).where.not(user_id: current_user.id).pluck('user_id')
-  end
+  # def partner_user
+  #   @chat = Chat.find(params[:id])
+  #   @room = @chat.room
+  #   UserRoom.where(room_id: @room.id).where.not(user_id: current_user.id).pluck('user_id')
+  # end
 
 end

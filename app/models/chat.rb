@@ -20,7 +20,6 @@ class Chat < ApplicationRecord
           notification.checked = true
       end
       notification.save if notification.valid?
-      #redirect_back(fallback_location: root_path)
   end
 
 end
