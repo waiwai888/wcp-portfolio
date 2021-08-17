@@ -1,27 +1,29 @@
 <div class="container">
   <h1 class="title"><%= @user.nickname %> さんとのChats</h1>
     <div class="chat-room">
-      <div class="message">
         <% if @chats != nil %>
-          <% @chats.each do |chat| %>
-            <tr>
+          <div class="message jscroll">
+            <% @chats.each do |chat| %>
               <% if chat.user_id == current_user.id %>
-                <td style="text align: right;"><%= chat.message %></td>
-                <td></td>
+                <p  style="text-right"><span class="current_user-message"><%= chat.message %></span><span><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>
               <% else %>
-                <td></td>
-                <td style="text-align: left;"><%= chat.message %></td>
+                <p style="text-left"><span class="partner_user-message"><%= chat.message %></span><span><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>
               <% end %>
-            </tr>
-          <% end %>
+            <% end %>
+          </div>
+          <%= paginate @chats %>
+        <% else %>
+          <P><%= @user.nickname %>さんと会話をしてみよう！</P>
         <% end %>
       </div>
-      <div class="chat-form">
-        <%= form_with model: @chat do |f| %>
-          <%= f.text_field :message %>
-          <%= f.hidden_field :room_id %>
-          <%= f.submit '送信' %>
-        <% end %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= form_with model: @chat do |f| %>
+            <%= f.text_field :message, class: "form-control" %>
+            <%= f.hidden_field :room_id %>
+            <%= f.submit '送信', class: "btn btn-success mt-3" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
