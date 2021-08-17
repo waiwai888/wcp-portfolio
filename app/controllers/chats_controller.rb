@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
 
-    @chats = @room.chats
+    @chats = @room.chats.page(params[:page]).per(5).order(created_at: :desc)
     @chat = Chat.new(room_id: @room.id)
 
   end
@@ -43,11 +43,5 @@ class ChatsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
-  # def partner_user
-  #   @chat = Chat.find(params[:id])
-  #   @room = @chat.room
-  #   UserRoom.where(room_id: @room.id).where.not(user_id: current_user.id).pluck('user_id')
-  # end
-
+  
 end
