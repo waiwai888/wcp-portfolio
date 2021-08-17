@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
 
-    @chats = @room.chats.page(params[:page]).per(5).order(created_at: :desc)
+    @chats = @room.chats.order(created_at: :desc)
     @chat = Chat.new(room_id: @room.id)
 
   end
