@@ -1,9 +1,9 @@
 <div class="container">
   <div class="title">#<%= @tag.tag_name%>に関する投稿</div>
-  <div class="tag_list">
+  <div class="row">
     <%= render 'layouts/tag_list', tag_list: @tag_list %>
   </div>
-  <div class="tag_posts">
+  <div class="row">
     <%= render 'posts/feeds', posts: @posts %>
   </div>
-</div>
+</div> 

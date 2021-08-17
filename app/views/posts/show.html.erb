@@ -57,7 +57,7 @@
         <div class="post-tag mt-2">
           <!--タグ表示-->
           <% @post_tags.each do |tag| %>
-            <%= link_to tag_search_path(tag_id: tag.id), class: "link" do %>
+            <%= link_to tag_search_path(tag_id: tag.id) do %>
               #<%= tag.tag_name %>
             <% end %>
           <% end %>
