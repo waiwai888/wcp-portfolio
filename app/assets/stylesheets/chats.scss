@@ -8,6 +8,7 @@
   padding: 1rem;
   border-radius: 30px;
   display: table;
+  text-align: right;
 }
 
 .partner_user-message {
@@ -16,8 +17,5 @@
   padding: 1rem;
   border-radius: 30px;
   display: table;
-}
-
-nav.pagination {
-  display: none;
+  text-align: left;
 }
