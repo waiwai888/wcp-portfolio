@@ -1,0 +1,28 @@
+<div class="chat-room">
+  <% if @chats != nil %>
+    <div class="">
+      <% chats.each do |chat| %>
+        <% if chat.user_id == current_user.id %>
+          <p class="current_user-message_box">
+            <span class="current_user-message"><%= chat.message %></span>
+            <span class="current_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+          </p>
+        <% else %>
+          <p class="partner_user-message_box">
+            <span class="partner_user-message"><%= chat.message %></span>
+            <span class="partner_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <P><%= user.nickname %>さんと会話をしてみよう！</P>
+  <% end %>
+</div>
+<div class="row col-md-10 col-12 form-inline">
+  <%= form_with model: chat do |f| %>
+    <%= f.text_field :message, class: "form-control" %>
+    <%= f.hidden_field :room_id %>
+    <%= f.submit '送信', class: "btn btn-success" %>
+  <% end %>
+</div>
