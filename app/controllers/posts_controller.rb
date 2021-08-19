@@ -17,8 +17,10 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+    @posts = Post.all.order(created_at: :desc)
     @tag_list = Tag.all
+    @followed_user = Relationship.where(follower_id: current_user.id).pluck("followed_id")
+    @followed_user_posts = Post.where(user_id: @followed_user)
   end
 
   def show
