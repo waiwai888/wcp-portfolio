@@ -2,12 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.current_user-message_box {
+  text-align: right;
+}
+
+.partner_user-message_box {
+  text-align: left;
+}
+
+
 .current_user-message {
   background-color: #e8e8e8;
   background: rgba(128, 128, 0, .3);
   padding: 1rem;
   border-radius: 30px;
-  display: table;
+  display: inline-block;
   text-align: right;
 }
 
@@ -16,6 +25,14 @@
   background: rgba(128, 128, 0, .3);
   padding: 1rem;
   border-radius: 30px;
-  display: table;
+  display: inline-block;
   text-align: left;
+}
+
+.current_user-message_time {
+  display: block;
+}
+
+.partner_user-message_time {
+  display: block;
 }

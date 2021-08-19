@@ -1,13 +1,19 @@
 <div class="container">
-  <h1 class="title"><%= @user.nickname %> さんとのChats</h1>
+  <h1 class="page-heading"><%= @user.nickname %> さんとのChats</h1>
     <div class="chat-room">
         <% if @chats != nil %>
           <div class="message jscroll">
             <% @chats.each do |chat| %>
               <% if chat.user_id == current_user.id %>
-                <p class="current_user-message"><%= chat.message %></p><p><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+                <p class="current_user-message_box">
+                  <span class="current_user-message"><%= chat.message %></span>
+                  <span class="current_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                </p>
               <% else %>
-                <p class="partner_user-message"><%= chat.message %></p><p><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+                <p class="partner_user-message_box">
+                  <span class="partner_user-message"><%= chat.message %></span>
+                  <span class="partner_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                </p>
               <% end %>
             <% end %>
           </div>
