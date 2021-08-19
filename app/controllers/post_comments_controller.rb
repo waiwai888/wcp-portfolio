@@ -8,19 +8,16 @@ class PostCommentsController < ApplicationController
     @comment_post = @post_comment.post
     if @post_comment.save
       @comment_post.create_notification_comment!(current_user, @post_comment.id)
+      @post_comment = PostComment.new(post_comment_params)
       flash[:notice] = 'コメントしました'
-      redirect_back(fallback_location: root_path)
-    else
-      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    post_comment = @post.post_comments.find(params[:id])
-    post_comment.destroy
+    @post_comment = @post.post_comments.find(params[:id])
+    @post_comment.destroy
     flash[:notice] = 'コメントを削除しました'
-    redirect_back(fallback_location: root_path)
   end
 
   private
