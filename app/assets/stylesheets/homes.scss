@@ -44,9 +44,7 @@
     background: rgba(151, 168, 166, .3);
     padding: 1rem;
     border-radius: 30px;
-    width: 20vh;
-    text-align: center;
-    margin: 0 auto;
+    display: inline-block;
 }
 
 #mv {
@@ -66,7 +64,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    z-index: 9999;
+    z-index: 8888;
     background-color: rgba(255, 255, 255, .5);
     padding: 1rem 3rem !important;
     margin: 0 !important;
