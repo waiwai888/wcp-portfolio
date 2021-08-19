@@ -1,11 +1,19 @@
-<div class="container">
-  <div class="row">
+<div class="container-fluid p-3">
+  <div class="row p-3">
     <%= render 'layouts/tag_list', tag_list: @tag_list %>
   </div>
-  <div class="row">
-    <%= render 'feeds', posts: @posts %>
-  </div>
-  <div class="page mt-4 mb-5">
-    <%= paginate @posts %>
+  <div class="wrap">
+    <ul id="tab-menu">
+      <li><a href="#tab1" class="active">フォローユーザーの投稿</a></li>
+      <li><a href="#tab2" class="">みんなの新着</a></li>
+    </ul>
+    <div id="tab-contents">
+      <div id="tab1" class="tab row feeds-index">
+        <%= render 'posts/feeds', posts: @followed_user_posts %>
+      </div>
+      <div id="tab2" class="tab row feeds-index">
+        <%= render 'posts/feeds', posts: @posts %>
+      </div>
+    </div>
   </div>
 </div>

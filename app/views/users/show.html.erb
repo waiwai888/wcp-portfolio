@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container-fluid">
   <div class="user_header">
     <div class="row">
       <!--current_user情報-->
-      <div class="col-md-6">
+      <div class="col-md-3">
         <!--アイコン-->
-        <div class="user_icon">
+        <div class="user_icon text-right mr-3">
           <%= link_to user_path(@user) do %>
             <%= attachment_image_tag @user, :profile_image, size: "100x100", format: "jpeg", fallback: "no_image.png", size: "100x100", class: "rounded-circle", style: "object-fit: cover;" %>
           <% end %>
@@ -16,7 +16,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-9">
         <div class="nickname mr-3 d-inline-block">
           <p><strong><%= @user.nickname %></strong></p>
         </div>

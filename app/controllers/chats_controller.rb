@@ -7,6 +7,7 @@ class ChatsController < ApplicationController
     @chat.save
     @chat.create_notification_dm!(current_user, @chat)
     @chats = @room.chats
+    @chat = Chat.new(room_id: chat_params[:room_id])
   end
 
   def show
@@ -43,5 +44,5 @@ class ChatsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-  
+
 end

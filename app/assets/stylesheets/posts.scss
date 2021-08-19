@@ -1,7 +1,7 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+$xxs2: 342px;
 $xxs: 400px;
 $xxs-min: 401px;
 $xs2: 489px;
@@ -9,8 +9,15 @@ $xs1: 575px;
 $sm: 767px;
 $md: 991px;
 $lg: 992px;
+$xlg: 1230px;
+$xl: 1420px;
 @mixin xs1 {
   @media (max-width: ($xs1)) {
+    @content;
+  }
+}
+@mixin xxs2 {
+  @media (max-width: ($xxs2)) {
     @content;
   }
 }
@@ -45,18 +52,95 @@ $lg: 992px;
     @content;
   }
 }
+@mixin xl {
+  @media (max-width: ($xl)) {
+    @content;
+  }
+}
 
+@mixin xl-xlg {
+  @media (max-width: ($xl)) and (min-width: ($xlg)){
+    @content;
+  }
+}
+
+@mixin xlg-lg {
+  @media (max-width: ($xlg)) and (min-width: ($lg)){
+    @content;
+  }
+}
 
 .profile {
   background-color: #fff;
 }
-
+// post/index
 .img {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
+  @include xl-xlg {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+  }
+  @include xlg-lg {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+  }
 }
 
+.feeds-index {
+  overflow: auto;
+  height: 80vh;
+}
+
+// post/index/タブ
+.wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#tab-menu {
+  display: flex;
+}
+
+#tab-menu li {
+  list-style-type: none;
+  width: 25%;
+  border: solid;
+  border-color: rgba(183, 191, 163, .5);
+  border-radius: 8px;
+}
+
+#tab-menu li a {
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  color: #000;
+  background-color: rgba(183, 191, 163, .5);
+}
+
+#tab-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tab-contents .tab {
+  width: 100%;
+}
+
+#tab-contents p {
+  color: #000;
+  line-height: 2.5;
+}
+
+// post/show
 .post-show-img {
   width: 500px;
   height: 500px;
