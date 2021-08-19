@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   # post_tagsモデル（中間テーブル）を通じてtagsテーブルへアクセス
 
 	validates :body, presence: true
+	validates :image, presence: true
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

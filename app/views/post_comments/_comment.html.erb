@@ -34,7 +34,7 @@
   <!--新規コメント投稿-->
   <div class="new-comment mt-3">
     <%= form_with(model:[post, post_comment]) do |f| %>
-      <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control", style: "width: 20vw" %>
+      <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control" %>
       <%= f.submit "Create", class: 'btn btn-success mt-3'%>
     <% end %>
   </div>

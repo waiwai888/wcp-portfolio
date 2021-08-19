@@ -1,5 +1,6 @@
 <!--$('.message').append("<p style='text-align: right;'><%= @chat.message %></p>");-->
 $('.message').append(
-'<p style="text-right"><span class="current_user-message"><%= @chat.message %></span><span><%= @chat.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>'
+'<p class="current_user-message_box"><span class="current_user-message"><%= @chat.message %></span><span class="current_user-message_time"><%= @chat.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>'
 );
 $("text_field").val('')
+alert('destroyアクション');

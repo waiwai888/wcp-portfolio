@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "登録情報を更新しました"
     else
       render :edit
     end

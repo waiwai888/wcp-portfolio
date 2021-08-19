@@ -1,29 +1,33 @@
-<div class="container">
-  <h1 class="title"><%= @user.nickname %> さんとのChats</h1>
-    <div class="chat-room">
-        <% if @chats != nil %>
-          <div class="message jscroll">
-            <% @chats.each do |chat| %>
-              <% if chat.user_id == current_user.id %>
-                <p class="current_user-message"><%= chat.message %></p><p><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></p>
-              <% else %>
-                <p class="partner_user-message"><%= chat.message %></p><p><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></p>
-              <% end %>
-            <% end %>
-          </div>
-        <% else %>
-          <P><%= @user.nickname %>さんと会話をしてみよう！</P>
+<div class="container message">
+  <h1 class="page-heading"><%= @user.nickname %> さんとのChats</h1>
+  <div class="chat-room">
+    <% if @chats != nil %>
+      <div class="message jscroll">
+        <% @chats.each do |chat| %>
+          <% if chat.user_id == current_user.id %>
+            <p class="current_user-message_box">
+              <span class="current_user-message"><%= chat.message %></span>
+              <span class="current_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+            </p>
+          <% else %>
+            <p class="partner_user-message_box">
+              <span class="partner_user-message"><%= chat.message %></span>
+              <span class="partner_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+            </p>
+          <% end %>
         <% end %>
       </div>
-      <div class="row">
-        <div class="col-md-3">
-          <%= form_with model: @chat do |f| %>
-            <%= f.text_field :message, class: "form-control" %>
-            <%= f.hidden_field :room_id %>
-            <%= f.submit '送信', class: "btn btn-success mt-3" %>
-          <% end %>
-        </div>
-      </div>
+    <% else %>
+      <P><%= @user.nickname %>さんと会話をしてみよう！</P>
+    <% end %>
+  </div>
+  <div class="row chat-form">
+    <div class="col-md-3">
+      <%= form_with model: @chat do |f| %>
+        <%= f.text_field :message, class: "form-control" %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit '送信', class: "btn btn-success mt-3" %>
+      <% end %>
     </div>
   </div>
 </div>

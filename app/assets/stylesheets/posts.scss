@@ -2,6 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$xxs: 400px;
+$xxs-min: 401px;
+$xs2: 489px;
+$xs1: 575px;
+$sm: 767px;
+$md: 991px;
+$lg: 992px;
+@mixin xs1 {
+  @media (max-width: ($xs1)) {
+    @content;
+  }
+}
+@mixin xxs {
+  @media (max-width: ($xxs)) {
+    @content;
+  }
+}
+@mixin xxs-min {
+  @media (min-width: ($xxs-min)) {
+    @content;
+  }
+}
+@mixin xs2 {
+  @media (max-width: ($xs2)) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (max-width: ($sm)) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: ($md)) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: ($lg)) {
+    @content;
+  }
+}
+
+
 .profile {
   background-color: #fff;
 }
@@ -16,4 +61,59 @@
   width: 500px;
   height: 500px;
   object-fit: cover;
+  @include md{
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+  }
+  @include xs2{
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+  }
+  @include xxs{
+    width: 290px;
+    height: 290px;
+    object-fit: cover;
+  }
+}
+
+.post-user_profile {
+  @include xxs-min {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @include xxs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+  }
+}
+
+.post-detaile {
+  @include lg{
+    margin-left: 1vw;
+  }
+  @include sm {
+    margin-left: 10px;
+  }
+  @include xs1{
+    margin-left: 40px;
+  }
+  @include xxs{
+    margin-left: 10px;
+  }
+}
+
+.post_comment {
+  @include sm {
+    margin-left: 20px;
+  }
+  @include xs1{
+    margin-left: 50px;
+  }
+  @include xxs{
+    margin-left: 40px;
+  }
 }
