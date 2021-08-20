@@ -1,1 +1,2 @@
-$('follow_btn_<%= @post.user %>').html("<%= j(render partial: 'layouts/follow', locals: {user: @user}) %>");
+$('#follow_btn_<%= @user.id %>').html("<%= j(render partial: 'layouts/follow', locals: {user: @user}) %>");
+alert('destroyアクション');
