@@ -12,11 +12,15 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
+    notification = Notification.find(params[:id])
+    notification.destroy
+    redirect_back(fallback_location: root_path)
   end
 
-  def all_destroy
-  @notifications = current_user.passive_notifications.destroy_all
-  redirect_back(fallback_location: root_path)
+  def destroy_all
+    @checked_notifications = Notification.where(visited_id: current_user.id, checked: true).where.not(visiter_id: current_user.id)
+    @checked_notifications.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
 end

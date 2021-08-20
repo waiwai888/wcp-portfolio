@@ -6,12 +6,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto mr-3">
         <% if user_signed_in? %>
           <li><%= link_to '新しく投稿', new_post_path,class: 'nav-link'%></li>
           <li><%= link_to 'マイページ', user_path(current_user), class: 'nav-link'%></li>
           <li><%= link_to 'みんなの投稿', posts_path, class: 'nav-link '%></li>
-          <li><%= link_to '通知', user_notifications_path(current_user), class: 'nav-link'%></li>
+          <% if unchecked_notifications.any? %>
+            <i class="fab fa-canadian-maple-leaf notification-icon" ></i>
+          <% end %>
+          <li><%= link_to '通知', user_notifications_path(current_user), class: 'btn-default nav-link'%></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
         <% else %>
           <li><%= link_to "Campistについて", '/#about', class: 'nav-link' %></li>
@@ -21,7 +24,7 @@
           <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-link'%></li>
         <% end %>
         </ul>
-        <ul class="navbar-nav ml-3">
+        <ul class="navbar-nav">
           <% if user_signed_in? %>
             <%= render 'layouts/search' %>
           <% end %>

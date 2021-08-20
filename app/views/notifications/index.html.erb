@@ -1,15 +1,14 @@
-<div class="container-fluid p-3">
-  <h4 class="page-heading">通知一覧</h4>
+<div class="container">
   <div class="row">
-    <div class="notification-wrap">
-      <ul id="notification-tab-menu">
-        <li class="tab-list"><a href="#notification-tab1" class="active">新着</a></li>
-        <li class="tab-list"><a href="#notification-tab2" class="">確認済み</a></li>
+    <div class="wrap">
+      <ul id="tab-menu">
+        <li><a href="#tab1" class="active">新着通知</a></li>
+        <li><a href="#tab2" class="">確認済み通知</a></li>
       </ul>
-      <div id="notification-tab-contents">
-        <div id="notification-tab1" class="tab notifications-index">
+      <div id="tab-contents">
+        <div id="tab1" class="tab notifications-index">
           <% if @notifications.present? %>
-            <table class="table">
+            <table class="table table-borderless">
               <% @notifications.each do |notification| %>
                 <tr>
                   <td>
@@ -28,24 +27,38 @@
           <% end %>
         </div>
 
-        <div id="notification-tab2" class="tab notifications-index">
+        <div id="tab2" class="tab notifications-index">
           <% if @checked_notifications.present? %>
-            <table class="table">
+            <!--全削除-->
+            <p>
+              <%= link_to user_notifications_destroy_all_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-success" do %>
+                全削除<i class="fas fa-trash-alt"></i>
+              <% end %>
+            </p>
+            <table class="table table-borderless">
               <% @checked_notifications.each do |notification| %>
                 <tr>
-                  <td class="menu">
+                  <td>
                     <%= link_to user_path(notification.visiter) do %>
                       <%= attachment_image_tag notification.visiter, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle" %>
                     <% end %>
                   </td>
-                  <td class="menu">
-                    <p><%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span></p>
+                  <td>
+                    <p>
+                      <%= notification_form(notification) %>
+                      <span class="moderate-font">
+                        <%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
+                      </span>
+                      <%= link_to user_notification_path(notification.visited, notification), method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                        <i class="fas fa-trash-alt"></i>
+                      <% end %>
+                    </p>
                   </td>
                 </tr>
               <% end %>
             </table>
           <% else %>
-            <p>通知はありません</p>
+            <p>未読の通知はありません</p>
           <% end %>
         </div>
       </div>
