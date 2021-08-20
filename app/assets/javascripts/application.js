@@ -55,16 +55,14 @@ $(document).on('turbolinks:load', function(){
     autoHover: true       // ホバー時に自動スライドを停止
   });
 });
-// 通知一覧タブ機能
-$('#notification-tab-contents .tab[id != "notification-tab1"]').hide();
+// 通知タブ機能
 document.addEventListener("turbolinks:load", function() {
-  $('#notification-tab-menu a').on('click', function(event) { //タブメニューのリストがクリックされたとき
-    $("#notification-tab-contents .tab").hide();
-    $('.tab-list').hover(function () { // タブメニューをhover
-    });
-    $("#notification-tab-menu .active").removeClass("active");
-      $(this).addClass("active");
-      $($(this).attr("href")).show();
-      event.preventDefault();
+  $('#tab-contents .tab[id != "tab1"]').hide();
+  $('#tab-menu a').on('click', function(event) {
+    $("#tab-contents .tab").hide();
+    $("#tab-menu .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    event.preventDefault();
   });
 })

@@ -3,77 +3,57 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .notifications-index {
-  overflow: auto;
+  overflow: scroll;
   height: 80vh;
 }
 
-.notification-wrap {
+#tab-menu {
+  display: flex;
+}
+
+#tab-menu li:hover {
+	background: rgba(151,168,166,.5);
+  transition:all 1s;
+}
+
+#tab-menu li:hover .tab{
+  max-height: 5rem; /*開いたときの高さを指定*/
+}
+
+.wrap {
   width: 100%;
   margin: 0 auto;
 }
 
-#notification-tab-menu {
-  display: flex;
-  border-bottom: 3px double #2e2d2d
-}
-
-#notification-tab-menu li {
+#tab-menu li {
   list-style-type: none;
   width: 25%;
+  transition:all 1s;
 }
 
-#notification-tab-menu li a {
+#tab-menu li a {
   text-decoration: none;
   display: block;
   padding: 20px;
   text-align: center;
 }
 
-#notification-tab-contents {
+#tab-menu .active {
+  background: #97a8a6;
+  color: white;
+  opacity: 0.8;
+}
+
+#tab-contents {
   display: flex;
   flex-wrap: wrap;
 }
 
-#notification-tab-contents .tab {
+#tab-contents .tab {
   width: 100%;
-  padding: 30px;
 }
 
-#notification-tab-contents p {
+#tab-contents p {
+  color: #000;
   line-height: 2.5;
-}
-
-.tab-list {
-  position: relative;
-  padding: 1em;
-  border-radius: 10px 10px 0 0;
-  background-color: #ddd;
-  transition: all .2s;
-  cursor: pointer;
-}
-
-.tab-list:not(:last-of-type) {
-  margin-right: 1em;
-}
-
-.active::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #28295e;
-}
-
-.menu {
-  padding: 2em 1em;
-  background-color: #eee;
-  transition: all .2s;
-  cursor: pointer;
-}
-
-#tab-menu .active {
-  color: #eaeaea;
-  background-color: #3972a7;
 }
