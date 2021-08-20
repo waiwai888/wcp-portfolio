@@ -1,19 +1,10 @@
-<div class="container-fluid p-3">
-  <div class="row p-3">
+<div class="container-fluid p-5">
+  <h4 class="page-heading">最近使われたタグ</h4>
+  <div class="row p-4">
     <%= render 'layouts/tag_list', tag_list: @tag_list %>
   </div>
-  <div class="wrap">
-    <ul id="tab-menu">
-      <li><a href="#tab1" class="active">フォローユーザーの投稿</a></li>
-      <li><a href="#tab2" class="">みんなの新着</a></li>
-    </ul>
-    <div id="tab-contents">
-      <div id="tab1" class="tab row feeds-index">
-        <%= render 'posts/feeds', posts: @followed_user_posts %>
-      </div>
-      <div id="tab2" class="tab row feeds-index">
-        <%= render 'posts/feeds', posts: @posts %>
-      </div>
-    </div>
+  <h4 class="page-heading">みんなの新着</h4>
+  <div class="row feeds-index">
+    <%= render 'feeds', posts: @posts %>
   </div>
 </div>
