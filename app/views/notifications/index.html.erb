@@ -1,17 +1,54 @@
-<div class="container">
-  <h1 class="page-heading">通知一覧</h1>
+<div class="container-fluid p-3">
+  <h4 class="page-heading">通知一覧</h4>
   <div class="row">
-    <% @notifications.each do |notification| %>
-      <div class="user-view clearfix ">
-      <%= link_to user_path(notification.visiter) do %>
-        <%= attachment_image_tag notification.visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.png", size: "50x50", class:"profile-img-circle" %>
-      <% end %>
-      <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
-      <br>
-      <% if !@comment.nil? %>
-        <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-      <% end %>
+    <div class="notification-wrap">
+      <ul id="notification-tab-menu">
+        <li class="tab-list"><a href="#notification-tab1" class="active">新着</a></li>
+        <li class="tab-list"><a href="#notification-tab2" class="">確認済み</a></li>
+      </ul>
+      <div id="notification-tab-contents">
+        <div id="notification-tab1" class="tab notifications-index">
+          <% if @notifications.present? %>
+            <table class="table">
+              <% @notifications.each do |notification| %>
+                <tr>
+                  <td>
+                    <%= link_to user_path(notification.visiter) do %>
+                      <%= attachment_image_tag notification.visiter, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <p><%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span></p>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <p>通知はありません</p>
+          <% end %>
+        </div>
+
+        <div id="notification-tab2" class="tab notifications-index">
+          <% if @checked_notifications.present? %>
+            <table class="table">
+              <% @checked_notifications.each do |notification| %>
+                <tr>
+                  <td class="menu">
+                    <%= link_to user_path(notification.visiter) do %>
+                      <%= attachment_image_tag notification.visiter, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle" %>
+                    <% end %>
+                  </td>
+                  <td class="menu">
+                    <p><%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span></p>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <p>通知はありません</p>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
