@@ -1,5 +1,11 @@
 <div class="container">
   <h2>プロフィール編集</h2>
+    <% if @user.errors.any? %>
+      <%= @user.errors.count %>件のエラーが発生しました
+      <% @user.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
     <%= form_with model: @user, local:true do |f| %>
       <%= f.label :profile_image, "プロフィール画像", class: "d-block" %>
       <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class: "rounded-circle d-insline-block", style: "object-fit: cover;"%>

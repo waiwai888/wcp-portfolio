@@ -1,17 +1,67 @@
 <div class="container">
-  <h1 class="title">Notice</h1>
   <div class="row">
-    <% @notifications.each do |notification| %>
-      <div class="user-view clearfix ">
-      <%= link_to user_path(notification.visiter) do %>
-        <%= attachment_image_tag notification.visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.png", size: "50x50", class:"profile-img-circle" %>
-      <% end %>
-      <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
-      <br>
-      <% if !@comment.nil? %>
-        <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-      <% end %>
+    <div class="wrap">
+      <ul id="tab-menu">
+        <li><a href="#tab1" class="active">新着通知</a></li>
+        <li><a href="#tab2" class="">確認済み通知</a></li>
+      </ul>
+      <div id="tab-contents">
+        <div id="tab1" class="tab notifications-index">
+          <% if @notifications.present? %>
+            <table class="table table-borderless">
+              <% @notifications.each do |notification| %>
+                <tr>
+                  <td>
+                    <%= link_to user_path(notification.visiter) do %>
+                      <%= attachment_image_tag notification.visiter, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <p><%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span></p>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <p>未読の通知はありません</p>
+          <% end %>
+        </div>
+
+        <div id="tab2" class="tab notifications-index">
+          <% if @checked_notifications.present? %>
+            <!--全削除-->
+            <p>
+              <%= link_to user_notifications_destroy_all_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-success" do %>
+                全削除<i class="fas fa-trash-alt"></i>
+              <% end %>
+            </p>
+            <table class="table table-borderless">
+              <% @checked_notifications.each do |notification| %>
+                <tr>
+                  <td>
+                    <%= link_to user_path(notification.visiter) do %>
+                      <%= attachment_image_tag notification.visiter, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <p>
+                      <%= notification_form(notification) %>
+                      <span class="moderate-font">
+                        <%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
+                      </span>
+                      <%= link_to user_notification_path(notification.visited, notification), method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                        <i class="fas fa-trash-alt"></i>
+                      <% end %>
+                    </p>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <p>通知はありません</p>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

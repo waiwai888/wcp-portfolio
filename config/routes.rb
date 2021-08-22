@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/search', to: 'searches#search'
 
-  resources :users, only: [:show, :edit, :update]do
+  resources :users, only: [:show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
-    resources :notifications, only: [:index, :create, :destroy, :all_destroy]
+    delete 'notifications/destroy_all', to: 'notifications#destroy_all'
+    resources :notifications, only: [:index, :create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
   	get 'followers' => 'relationships#followers', as: 'followers'
   end

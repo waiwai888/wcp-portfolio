@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   # post_tagsモデル（中間テーブル）を通じてtagsテーブルへアクセス
 
 	validates :body, presence: true
+	validates :image, presence: true
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
@@ -30,10 +31,10 @@ class Post < ApplicationRecord
         action: 'favorite',
         checked: false
         )
-      # いいねした人、された人が同一の場合、通知は確認済みとする
-      if notification.visiter_id == notification.visited_id
-        notification.checked = true
-      end
+      # # いいねした人、された人が同一の場合、通知は確認済みとする
+      # if notification.visiter_id == notification.visited_id
+      #   notification.checked = true
+      # end
       notification.save if notification.valid?
     end
   end
@@ -57,10 +58,10 @@ class Post < ApplicationRecord
       action: 'comment',
       checked: false
     )
-    # 自分の投稿に対するコメントの場合は、通知済みとする
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
+    # # 自分の投稿に対するコメントの場合は、通知済みとする
+    # if notification.visiter_id == notification.visited_id
+    #   notification.checked = true
+    # end
     notification.save! if notification.valid?
   end
 

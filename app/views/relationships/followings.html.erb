@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="page-heading">Followings</h4>
+  <h4 class="page-heading">フォローユーザー</h4>
   <% if @users.exists? %>
     <%= render 'users/index', users: @users %>
     <%= paginate @users %>

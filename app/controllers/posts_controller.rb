@@ -10,15 +10,17 @@ class PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(",") #送られてきた値を,で区切って配列化
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to posts_path, notice: "successfully"
+      redirect_to posts_path, notice: "投稿しました"
     else
       render :new
     end
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+    @posts = Post.all.order(created_at: :desc)
     @tag_list = Tag.all
+    @followed_user = Relationship.where(follower_id: current_user.id).pluck("followed_id")
+    @followed_user_posts = Post.where(user_id: @followed_user)
   end
 
   def show
@@ -36,10 +38,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tag_list = params[:post][:tag_name].split(",")
     if @post.update(post_params)
+      tag_list = params[:post][:tag_name].split(",")
       @post.save_tag(tag_list)
-      redirect_to post_path(@post), notice: "successfully"
+      redirect_to post_path(@post), notice: "投稿を更新しました"
     else
       @tag_list = @post.tags.pluck(:tag_id).join(",")
       render :edit

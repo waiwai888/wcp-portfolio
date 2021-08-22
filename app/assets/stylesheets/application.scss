@@ -22,7 +22,12 @@ $theme-colors: (
     success: #9DA897
 );
 
-// $enable-rounded: false;
+$md: 991px;
+@mixin md {
+  @media (max-width: ($md)) {
+    @content;
+  }
+}
 
 @import "bootstrap";
 @import 'font-awesome-sprockets';
@@ -33,6 +38,8 @@ $theme-colors: (
     padding: 0;
     box-sizing: border-box;
     font-family: 'Raleway', 'Noto Sans JP', sans-serif;
+    list-style: none;
+    list-style: none;
 }
 
 .link {
@@ -99,10 +106,22 @@ footer {
 }
 
 .page-heading {
-    background-color: #e8e8e8;
-    background: rgba(128, 128, 0, .3);
+    background: rgba(151, 168, 166, .3);
     padding: 1rem;
     border-radius: 30px;
-    width: 20vh;
+    display: inline-block;
     text-align: center;
+}
+
+.notification-icon {
+    position: absolute;
+    padding-left: 21rem;
+    padding-top: 0rem;
+    color: #5f6527;
+  @include md{
+    position: absolute;
+    padding-left: 2rem;
+    padding-top: 8rem;
+    color: #5f6527;
+  }
 }

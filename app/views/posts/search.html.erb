@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="title">#<%= @tag.tag_name%>に関する投稿</div>
+  <div class="container">
+  <h4 class="page-heading">#<%= @tag.tag_name%>に関する投稿</h4>
   <div class="row">
     <%= render 'layouts/tag_list', tag_list: @tag_list %>
   </div>

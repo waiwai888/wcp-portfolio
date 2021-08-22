@@ -55,15 +55,14 @@ $(document).on('turbolinks:load', function(){
     autoHover: true       // ホバー時に自動スライドを停止
   });
 });
-
-// チャットメッセージをスクロール表示
-// $(window).on('scroll', function() {
-//   var scrollHeight = $(document).height();
-//   var scrollPosition = $(window).height() + $(window).scrollTop();
-//   if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-//     $('.jscroll').jscroll({
-//       contentSelector: '.message',
-//       nextSelector: 'span.next:last a'
-//     });
-//   }
-// });
+// 通知タブ機能
+document.addEventListener("turbolinks:load", function() {
+  $('#tab-contents .tab[id != "tab1"]').hide();
+  $('#tab-menu a').on('click', function(event) {
+    $("#tab-contents .tab").hide();
+    $("#tab-menu .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    event.preventDefault();
+  });
+})

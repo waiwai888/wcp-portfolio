@@ -1,75 +1,82 @@
 <div class="container">
   <div class="row">
-
     <!--left-side-->
     <div class="col-md-8">
       <div class="post-image">
         <%= attachment_image_tag(@post, :image, :fill, 400, 400, class: "d-block mx-auto post-show-img") %>
       </div>
-      <div class="row mt-3">
-        <div class="col-md-2">
-          <%= link_to user_path(@post.user) do %>
-            <%= attachment_image_tag(@post.user, :profile_image, :fill, 50, 50, fallback: "no_image.png", class: "rounded-circle") %>
-          <% end %>
-        </div>
-        <div class="col-md-4">
-          <!--ニックネーム-->
-          <p>
-            <%= link_to user_path(@user) do %>
-              <%= @user.nickname %>
+      <div class="post-user_profile">
+        <div class="row col-11 col-sm-12 col-md-12 col-lg-11 col-xl-9 mt-3">
+          <div class="col-md-4 col-sm-4 col-4">
+            <%= link_to user_path(@post.user) do %>
+              <%= attachment_image_tag(@post.user, :profile_image, :fill, 50, 50, fallback: "no_image.png", class: "rounded-circle") %>
             <% end %>
-          </p>
-          <p>
-            <%= link_to user_path(@user) do %>
-              <%= @user.account_name %>
-            <% end %>
-          </p>
-        </div>
-        <div class="col-md-3">
-          <div id="favorite_buttons_<%= @post.id %>">
-            <!--いいねボタン設置-->
-            <%= render 'layouts/favorite', post: @post %>
+          </div>
+          <div class="col-md-4 col-sm-4 col-4">
+            <!--ニックネーム-->
+            <p>
+              <%= link_to user_path(@user) do %>
+                <%= @user.nickname %>
+              <% end %>
+            </p>
+            <p>
+              <%= link_to user_path(@user) do %>
+                <%= @user.account_name %>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-4 col-4">
+            <!--いいねボタン-->
+            <div id="favorite_buttons_<%= @post.id %>">
+              <%= render 'layouts/favorite', post: @post %>
+            </div>
+            <div class="follow-edit_btn">
+              <!--フォローor編集・削除ボタン設置-->
+              <% if @post.user == current_user %>
+                <%= link_to edit_post_path(@post), class: "edit_book_#{@post.id} fa-2x" do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "destroy_book_#{@post.id} fa-2x" do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <% else %>
+                <div id="follow_btn_<%= @user.id %>">
+                  <%= render 'layouts/follow', user: @user %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <!--フォローor編集・削除ボタン設置-->
-          <% if @post.user == current_user %>
-            <%= link_to edit_post_path(@post), class: "edit_book_#{@post.id} fa-2x" do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
-            <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "destroy_book_#{@post.id} fa-2x" do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          <% else %>
-            <div id="follow_btn_<%= @post.user %>">
-              <%= render 'layouts/follow', user: @user %>
+        <div class="row col-md-12 col-lg-11 col-xl-9 mt-3">
+          <div class="post-detaile">
+            <div class="create-time">
+              <%= @post.created_at.strftime('%Y/%m/%d') %>
             </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="post-detaile">
-        <div class="create-time">
-          <%= @post.created_at.strftime('%Y/%m/%d') %>
-        </div>
-        <div class="post-content mt-2">
-          <%= @post.body %>
-        </div>
-        <div class="post-tag mt-2">
-          <!--タグ表示-->
-          <% @post_tags.each do |tag| %>
-            <%= link_to tag_search_path(tag_id: tag.id) do %>
-              #<%= tag.tag_name %>
-            <% end %>
-          <% end %>
+            <div class="post-content mt-2">
+              <%= @post.body %>
+            </div>
+            <div class="post-tag mt-2">
+              <!--タグ表示-->
+              <% @post_tags.each do |tag| %>
+                <%= link_to tag_search_path(tag_id: tag.id) do %>
+                  #<%= tag.tag_name %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!--right-side-->
-    <div class="col-md-4">
-      <div id="comment_create_<%= @post.id%>">
-        <!--コメント入力欄設置--> <!--コメント一覧表示-->
-        <%= render 'post_comments/comment', post: @post, post_comment: @post_comment %>
+    <div class="col-md-4 mb-4">
+      <div class="post_comment">
+        <div class="row col-md-12 col-lg-11 col-xl-9">
+          <div id="comment_create_<%= @post.id%>">
+            <!--コメント入力欄設置--> <!--コメント一覧表示-->
+            <%= render 'post_comments/comment', post: @post, post_comment: @post_comment %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
