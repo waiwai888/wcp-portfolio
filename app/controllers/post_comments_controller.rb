@@ -9,7 +9,7 @@ class PostCommentsController < ApplicationController
     if @post_comment.save
       @comment_post.create_notification_comment!(current_user, @post_comment.id)
       @post_comment = PostComment.new(post_comment_params)
-      flash[:notice] = 'コメントしました'
+      flash.now[:notice] = 'コメントしました'
     end
   end
 
@@ -17,7 +17,7 @@ class PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = @post.post_comments.find(params[:id])
     @post_comment.destroy
-    flash[:notice] = 'コメントを削除しました'
+    flash.now[:notice] = 'コメントを削除しました'
   end
 
   private
