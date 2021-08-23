@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   
+  
   def after_sign_in_path_for(resource) 
-    posts_path
+    posts_followed_index_path
   end
 
   protected
