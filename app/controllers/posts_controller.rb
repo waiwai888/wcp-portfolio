@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def followed_index
-    @tag_list = Tag.all
+    @tag_list = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(10).pluck(:tag_id))
     @followed_user = Relationship.where(follower_id: current_user.id).pluck("followed_id")
     @posts = Post.where(user_id: @followed_user).order(created_at: :desc)
   end
