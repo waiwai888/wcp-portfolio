@@ -53,7 +53,7 @@ $md: 991px;
 body {
     background-color: #f5f5f5;
     height: 100vh;
-    
+
 }
 
 main {
@@ -68,6 +68,7 @@ main {
     padding: 1rem;
     border-radius: 30px;
     margin-top: 2rem;
+    display: none;
 }
 
 #back {
@@ -119,13 +120,13 @@ footer {
 
 .notification-icon {
     position: absolute;
-    padding-left: 21rem;
+    padding-left: 25rem;
     padding-top: 0rem;
     color: #5f6527;
   @include md{
     position: absolute;
     padding-left: 2rem;
-    padding-top: 8rem;
+    padding-top: 10rem;
     color: #5f6527;
   }
 }
