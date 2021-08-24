@@ -47,9 +47,18 @@ $md: 991px;
     color: #9da897;
 }
 
+a {
+    @include md{
+    font-size: unquote('min(20px, 2vw)');
+  }
+}
+
 body {
     background-color: #f5f5f5;
     height: 100vh;
+    @include md{
+    font-size: unquote('min(20px, 2vw)');
+  }
 }
 
 main {
@@ -124,4 +133,15 @@ footer {
     padding-top: 8rem;
     color: #5f6527;
   }
+}
+
+.tag-list {
+    margin: 1rem;
+}
+
+.tag-content {
+    background: rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    padding: 1rem;
+    margin-right: 1vw;
 }

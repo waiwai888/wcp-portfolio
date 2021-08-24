@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
   	get 'followers' => 'relationships#followers', as: 'followers'
   end
-
+  get 'posts/followed_index', to: 'posts#followed_index'
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]

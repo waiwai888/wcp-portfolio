@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_post,only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -19,8 +21,12 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
     @tag_list = Tag.all
+  end
+
+  def followed_index
+    @tag_list = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(10).pluck(:tag_id))
     @followed_user = Relationship.where(follower_id: current_user.id).pluck("followed_id")
-    @followed_user_posts = Post.where(user_id: @followed_user)
+    @posts = Post.where(user_id: @followed_user).order(created_at: :desc)
   end
 
   def show
@@ -67,4 +73,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(:image, :body)
   end
 
+  def ensure_correct_post
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
 end
