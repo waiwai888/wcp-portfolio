@@ -138,3 +138,11 @@ PostTag.create!(
     {tag_id: '2', post_id: '9', id: 25}
   ]
 )
+Relationship.create!(
+  [
+    {follower_id: '1', followed_id: '2', id: 1},
+    {follower_id: '2', followed_id: '1', id: 2},
+    {follower_id: '2', followed_id: '3', id: 3},
+    {follower_id: '3', followed_id: '2', id: 4}
+    ]
+  )
