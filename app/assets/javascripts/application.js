@@ -66,3 +66,10 @@ document.addEventListener("turbolinks:load", function() {
     event.preventDefault();
   });
 })
+
+$(function () {
+    $(document).ready(function() {
+        $("#notice").stop().fadeIn(1200).delay(1500).fadeOut("slow");
+    });
+});
+
