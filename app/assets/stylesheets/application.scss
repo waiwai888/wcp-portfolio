@@ -48,6 +48,10 @@ $xs1: 575px;
     list-style: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .link {
     text-decoration: none;
     color: #9da897;

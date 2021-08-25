@@ -21,27 +21,7 @@
 //= require turbolinks
 //= require_tree .
 /*global $*/
-//topヘッダーから指定位置までスクロール
-$(document).on('turbolinks:load', function(){
-  $(function () {
-      $('a[href^="#"]').click(function () {
-          var speed = 5000;
-          var href= $(this).attr("href");
-          var target = $(href == "#" || href == "" ? 'html' : href);
-          var position = target.offset().top;
-          $("html, body").animate({scrollTop:position}, 500, "swing");
-      });
-  });
-  //ページ上部（top）へスクロール
-  $(function() {
-    $('#back a').on('click',function(event){
-      $('body, html').animate({
-        scrollTop:0
-      }, 800);
-      event.preventDefault();
-    });
-  });
-});
+
 //top画像スクロール
 $(document).on('turbolinks:load', function(){
   $('.bxslider').bxSlider({
