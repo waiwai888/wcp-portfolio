@@ -9,7 +9,7 @@ class PostCommentsController < ApplicationController
     if @post_comment.save
       @comment_post.create_notification_comment!(current_user, @post_comment.id)
       @post_comment = PostComment.new(post_comment_params)
-      flash.now[:notice] = 'コメントしました'
+      @notice = 'コメントしました'
     end
   end
 
