@@ -22,23 +22,24 @@
 //= require_tree .
 /*global $*/
 //topヘッダーから指定位置までスクロール
-$(function () {
-    $('a[href^="#"]').click(function () {
-        var speed = 500;
-        var href= $(this).attr("href");
-        var target = $(href == "#" || href == "" ? 'html' : href);
-        var position = target.offset().top;
-        $("html, body").animate({scrollTop:position}, speed, 'swing');
-        return false;
+$(document).on('turbolinks:load', function(){
+  $(function () {
+      $('a[href^="#"]').click(function () {
+          var speed = 5000;
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top;
+          $("html, body").animate({scrollTop:position}, 500, "swing");
+      });
+  });
+  //ページ上部（top）へスクロール
+  $(function() {
+    $('#back a').on('click',function(event){
+      $('body, html').animate({
+        scrollTop:0
+      }, 800);
+      event.preventDefault();
     });
-});
-//ページ上部（top）へスクロール
-$(function() {
-  $('#back a').on('click',function(event){
-    $('body, html').animate({
-      scrollTop:0
-    }, 800);
-    event.preventDefault();
   });
 });
 //top画像スクロール
@@ -67,9 +68,9 @@ document.addEventListener("turbolinks:load", function() {
   });
 })
 
-$(function () {
-    $(document).ready(function() {
-        $("#notice").stop().fadeIn(1200).delay(1500).fadeOut("slow");
-    });
-});
 
+ $(function () {
+      $(document).ready(function() {
+          $("#notice-box").fadeOut(2000);
+      });
+  });

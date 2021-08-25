@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row ml-3">
-    <h4 class="page-heading">新規アカウント登録（無料）</h2>
+    <h4 class="page-heading mr-3">新規アカウント登録（無料）</h2>
   </div>
   <div class="row ml-3">
 
@@ -30,7 +30,7 @@
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       </div>

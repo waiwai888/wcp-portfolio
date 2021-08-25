@@ -1,3 +1,4 @@
+$("#notice_async").html("<%= j(render partial: "post_comments/notice", locals: { notice: @notice }) %>");
 $("#comment_create_<%= @post.id%>").html("<%= j(render partial: 'post_comments/comment', locals: {post: @post, post_comment: @post_comment}) %>");
 $("textarea").val('')
 alert('createアクション');
