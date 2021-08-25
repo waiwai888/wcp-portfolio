@@ -39,6 +39,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @user = @post.user
     @tag_list = @post.tags.pluck(:tag_id).join(",")
   end
 
@@ -62,7 +63,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @tag_list = Tag.all
+    @tag_list = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(10).pluck(:tag_id))
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.all
   end
@@ -74,7 +75,8 @@ class PostsController < ApplicationController
   end
 
   def ensure_correct_post
-    @user = User.find(params[:id])
+    @post = Post.find(params[:id])
+    @user = @post.user
     unless @user == current_user
       redirect_to user_path(current_user)
     end

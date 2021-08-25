@@ -10,18 +10,18 @@
 
       <div class="post-user_profile col-xxl-10 mt-3 mb-3 ">
         <!--アイコン-->
-        <div class="sub col-4 col-sm-4 col-md-4 col-lg-3">
+        <div class="sub col-4 col-sm-4 col-md-4 col-lg-4">
           <%= link_to user_path(post.user) do %>
             <%= attachment_image_tag post.user, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
           <% end %>
         </div>
         <!--ニックネーム・アカウント名-->
-        <div class="name text-center col-3 col-sm-4 col-md-4 col-lg-4 m-auto">
+        <div class="name text-center col-4 col-sm-4 col-md-4 col-lg-4 m-auto">
           <p><strong><%= link_to post.user.nickname, user_path(post.user), class: "link" %></strong></p>
           <p><%= link_to post.user.account_name, user_path(post.user), class: "link" %></p>
         </div>
         <!--いいね/フォローぼたん-->
-        <div class="favorite col-5 col-sm-4 col-md-4 col-lg-5 d-block mx-auto">
+        <div class="favorite col-4 col-sm-4 col-md-4 col-lg-4 d-block mx-auto">
           <!--いいねボタン設置-->
           <div id="favorite_buttons_<%= post.id %>">
             <%= render 'layouts/favorite', post: post %>

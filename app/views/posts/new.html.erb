@@ -1,19 +1,25 @@
 <div class="container">
-  <h4 class="page-heading">New Post</h4>
+  <h4 class="page-heading mr-2">New Post</h4>
   <% if @post.errors.any? %>
     <%= @post.errors.count %>件のエラーが発生しました
     <% @post.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
   <% end %>
-  <div class="create-post">
+  <div class="ml-2 mr-2">
     <%= form_with model: @post, local:true do |f| %>
-      <%= f.label :image, "投稿画像", class: "d-block mt-3" %>
-      <%= f.attachment_field :image, class: "d-block mt-3" %>
+    <div class="field row col-sm-12 col-md-6">
+      <%= f.label :image, "投稿画像", class: "d-block my-auto mb-2" %>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="field row col-sm-12 col-md-6">
       <%= f.label :body, "本文", class: "d-block mt-3" %>
-      <%= f.text_area :body, class: "d-block mt-3" %>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div class="field row col-sm-12 col-md-6">
       <div class="mt-3">" , "を入力することで複数のタグを登録することができます。</div>
-      <%= f.text_field :tag_name, placeholder: '例）キャンプ飯　男飯', class: "d-block mt-3" %>
+      <%= f.text_field :tag_name, placeholder: '例）キャンプ飯　男飯', class: "form-control" %>
       <%= f.submit 'Create', class: 'btn btn-success d-block mt-3' %>
+    </div>
     <% end %>
   </div>

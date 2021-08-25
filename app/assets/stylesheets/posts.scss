@@ -138,6 +138,11 @@ $xxl: 2040px;
   height: 80vh;
 }
 
+.comment-index {
+  overflow: auto;
+  height: 50vh;
+}
+
 // post/show
 .post-show-img {
   width: 500px;
@@ -183,7 +188,7 @@ $xxl: 2040px;
     margin-left: 40px;
   }
   @include xxs{
-    margin-left: 10px;
+    margin-left: 20px;
   }
 }
 
@@ -195,6 +200,17 @@ $xxl: 2040px;
     margin-left: 50px;
   }
   @include xxs{
-    margin-left: 40px;
+    margin-left: 10px;
   }
+}
+
+.comment-form_title {
+    background: rgba(151, 168, 166, .3);
+    padding: 1rem;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+.follow-edit_btn {
+  
 }

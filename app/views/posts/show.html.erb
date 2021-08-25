@@ -6,8 +6,8 @@
         <%= attachment_image_tag(@post, :image, :fill, 400, 400, class: "d-block mx-auto post-show-img") %>
       </div>
       <div class="post-user_profile">
-        <div class="row col-11 col-sm-12 col-md-12 col-lg-11 col-xl-9 mt-3">
-          <div class="col-md-4 col-sm-4 col-4">
+        <div class="row col-xs-12 col-lg-11 col-xl-9 mt-3">
+          <div class="col-md-4 col-sm-4 col-3">
             <%= link_to user_path(@post.user) do %>
               <%= attachment_image_tag(@post.user, :profile_image, :fill, 50, 50, fallback: "no_image.png", class: "rounded-circle") %>
             <% end %>
@@ -25,7 +25,7 @@
               <% end %>
             </p>
           </div>
-          <div class="col-md-4 col-sm-4 col-4">
+          <div class="col-md-4 col-sm-4 col-5">
             <!--いいねボタン-->
             <div id="favorite_buttons_<%= @post.id %>">
               <%= render 'layouts/favorite', post: @post %>
@@ -55,7 +55,7 @@
             <div class="post-content mt-2">
               <%= @post.body %>
             </div>
-            <div class="post-tag mt-2">
+            <div class="post-tag mt-2 mb-3">
               <!--タグ表示-->
               <% @post_tags.each do |tag| %>
                 <%= link_to tag_search_path(tag_id: tag.id) do %>
