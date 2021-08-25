@@ -6,3 +6,23 @@
     width: 134px;
     margin: 18px auto 0 auto;
 }
+
+
+$sm: 768px;
+
+@mixin sm {
+  @media (min-width: ($sm)) {
+    @content;
+  }
+}
+
+.user_icon {
+    @include sm {
+        text-align: right;
+    }
+}
+
+.users-index {
+  overflow: auto;
+  height: 70vh;
+}

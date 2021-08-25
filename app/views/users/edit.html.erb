@@ -1,23 +1,31 @@
 <div class="container">
-  <h2>プロフィール編集</h2>
+  <h4 class="page-heading mr-2">プロフィール編集</h2>
     <% if @user.errors.any? %>
       <%= @user.errors.count %>件のエラーが発生しました
       <% @user.errors.full_messages.each do |message| %>
         <%= message %>
       <% end %>
     <% end %>
-    <div class="row col-md-6">
+    <div class="ml-2 mr-2">
       <%= form_with model: @user, local:true do |f| %>
-        <%= f.label :profile_image, "プロフィール画像", class: "d-block" %>
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class: "rounded-circle d-insline-block", style: "object-fit: cover;"%>
+      <div class="field row col-sm-12 col-md-6">
+        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class: "rounded-circle d-insline-block mb-2", style: "object-fit: cover;"%>
+        <%= f.label :profile_image, "プロフィール画像", class: "d-block my-auto mb-2" %>
         <%= f.attachment_field :profile_image %>
-        <%= f.label :nickname, "ニックネーム", class: "d-block mt-3"  %>
+      </div>
+      <div class="field row col-sm-12 col-md-6">
+        <%= f.label :nickname, "ニックネーム", class: "mt-3"  %>
         <%= f.text_field :nickname, class: "form-control" %>
-        <%= f.label :account_name, "アカウント名", class: "d-block mt-3" %>
+      </div>
+      <div class="field row col-sm-12 col-md-6">
+        <%= f.label :account_name, "アカウント名", class: "mt-3" %>
         <%= f.text_field :account_name, class: "form-control" %>
-        <%= f.label :introduction, "自己紹介文", class: "d-block mt-3" %>
+      </div>
+      <div class="field row col-sm-12 col-md-6">
+        <%= f.label :introduction, "自己紹介文", class: "mt-3" %>
         <%= f.text_field :introduction, class: "form-control" %>
-        <%= f.submit "Update", class: "btn btn-success d-block mt-3" %>
+      </div>
+        <%= f.submit "更新する", class: "btn btn-success mt-3" %>
       <% end %>
     </div>
 </div>
