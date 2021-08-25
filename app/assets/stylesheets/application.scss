@@ -55,7 +55,8 @@ $xs1: 575px;
 
 a {
     @include md{
-    font-size: unquote('min(20px, 2vw)');
+        
+    font-size: clamp(20px,2vw);
   }
 }
 
@@ -63,7 +64,7 @@ body {
     background-color: #f5f5f5;
     height: 100vh;
     @include md{
-    font-size: unquote('min(20px, 2vw)');
+    font-size: clamp(20px,2vw);
   }
 }
 
