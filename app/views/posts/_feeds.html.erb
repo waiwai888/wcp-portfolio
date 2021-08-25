@@ -1,5 +1,5 @@
 <% posts.each do |post| %>
-  <div class="col-12 col-md-6 col-lg-4 post_1 mt-3">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 post_1 mt-3">
     <div class="bg-white">
       <div class="image_container">
         <!--投稿画像-->
@@ -8,25 +8,26 @@
         <% end %>
       </div>
 
-      <div class="post-user_profile col-xxl-10 mt-3 ">
+      <div class="post-user_profile col-xxl-10 mt-3 mb-3 ">
         <!--アイコン-->
-        <div class="sub col-4 col-md-4 col-lg-3">
+        <div class="sub col-4 col-sm-4 col-md-4 col-lg-3">
           <%= link_to user_path(post.user) do %>
-            <%= attachment_image_tag post.user, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto" %>
+            <%= attachment_image_tag post.user, :profile_image, :fill,65,65, format: "jpeg", fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
           <% end %>
         </div>
         <!--ニックネーム・アカウント名-->
-        <div class="name text-center col-4 col-md-4 col-lg-4 m-auto">
+        <div class="name text-center col-3 col-sm-4 col-md-4 col-lg-4 m-auto">
           <p><strong><%= link_to post.user.nickname, user_path(post.user), class: "link" %></strong></p>
           <p><%= link_to post.user.account_name, user_path(post.user), class: "link" %></p>
         </div>
-        <!--いいねボタン設置-->
-        <div class="favorite col-4 col-md-4 col-lg-5 d-block mx-auto">
+        <!--いいね/フォローぼたん-->
+        <div class="favorite col-5 col-sm-4 col-md-4 col-lg-5 d-block mx-auto">
+          <!--いいねボタン設置-->
           <div id="favorite_buttons_<%= post.id %>">
             <%= render 'layouts/favorite', post: post %>
           </div>
-        <!--フォローボタン設置-->
-          <div id="follow_btn_<%= post.user.id %>">
+          <!--フォローボタン設置-->
+          <div id="follow_btn_<%= post.user.id %>", class="pb-2">
             <%= render 'layouts/follow', user: post.user %>
           </div>
         </div>

@@ -6,11 +6,13 @@ $xxs: 400px;
 $xxs-min: 401px;
 $xs2: 489px;
 $xs1: 575px;
+$sm2: 720px;
 $sm: 767px;
 $md: 991px;
 $lg: 992px;
 $xlg: 1230px;
 $xl: 1420px;
+$xxl: 2040px;
 @mixin xs1 {
   @media (max-width: ($xs1)) {
     @content;
@@ -64,11 +66,27 @@ $xl: 1420px;
   }
 }
 
-@mixin xlg-lg {
-  @media (max-width: ($xlg)) and (min-width: ($lg)){
+@mixin xlg-sm {
+  @media (max-width: ($xlg)) and (min-width: ($sm)){
     @content;
   }
 }
+@mixin sm2-xs1 {
+  @media (max-width: ($sm2)) and (min-width: ($xs1)){
+    @content;
+  }
+}
+@mixin xs1-xxs-min {
+  @media (max-width: ($xs1)) and (min-width: ($xxs-min)){
+    @content;
+  }
+}
+@mixin xxl {
+  @media (min-width: ($xxl)) {
+    @content;
+  }
+}
+
 
 .profile {
   background-color: #fff;
@@ -83,9 +101,34 @@ $xl: 1420px;
     height: 350px;
     object-fit: cover;
   }
-  @include xlg-lg {
+  @include xlg-sm {
     width: 280px;
     height: 280px;
+    object-fit: cover;
+  }
+  @include sm {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+  }
+  @include xs1 {
+    width: 210px;
+    height: 210px;
+    object-fit: cover;
+  }
+  @include sm2-xs1 {
+    width: 210px;
+    height: 210px;
+    object-fit: cover;
+  }
+  @include xs1-xxs-min {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+  }
+  @include xxl{
+    width: 600px;
+    height: 600px;
     object-fit: cover;
   }
 }
@@ -126,7 +169,6 @@ $xl: 1420px;
   @include xxs {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 30px;
   }
 }
 
