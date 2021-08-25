@@ -4,7 +4,7 @@
     <title>Campist</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,10 +14,17 @@
     <%= render 'layouts/header'%>
     <main>
       <% if notice.present? %>
-      <div id="notice-box" class="position-fixed w-100 text-center">
-        <div id="notice" class="d-inline-block" ><%= notice %></div>
-      </div>
-      <% end %>
+        <div id="notice-box" class="position-fixed w-100 text-center">
+          <div id="notice" class="d-inline-block" >
+            <%= notice %>
+          </div>
+        </div>
+       <% end %>
+
+        <div id="notice_async">
+          <%= render partial: "post_comments/notice", locals: { notice: @notice }%>
+        </div>
+
       <%= yield %>
       <span id="back">
         <a href="#">
