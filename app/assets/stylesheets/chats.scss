@@ -2,42 +2,91 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.current_user-message_box {
-  text-align: right;
-}
-
-.partner_user-message_box {
-  text-align: left;
-}
-
-
-.current_user-message {
-  background-color: #e8e8e8;
-  background: rgba(128, 128, 0, .3);
-  padding: 1rem;
-  border-radius: 30px;
-  display: inline-block;
-  text-align: right;
-}
-
-.partner_user-message {
-  background-color: #e8e8e8;
-  background: rgba(128, 128, 0, .3);
-  padding: 1rem;
-  border-radius: 30px;
-  display: inline-block;
-  text-align: left;
-}
-
-.current_user-message_time {
-  display: block;
-}
-
-.partner_user-message_time {
-  display: block;
-}
-
 .chat-room {
   height: 60vh;
   overflow: auto; 
+}
+
+.message {
+  max-width: 900px;
+  min-height: 100%;
+}
+
+.chat-user-name {
+  max-width: 900px;
+}
+
+
+.chats{
+  padding: 20px 10px;
+  width: 100%;
+  text-align: right;
+  font-size: 14px;
+  background: #B7BFA3;
+}
+.fukidasi {
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+}
+.fukidasi .faceicon {
+  float: left;
+  margin-right: -50px;
+  width: 40px;
+}
+.fukidasi .faceicon img{
+  width: 90%;
+  height: auto;
+  border-radius: 50%;
+}
+.fukidasi .chatting {
+  width: 100%;
+  text-align: left;
+}
+.says {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0 50px;
+  padding: 10px;
+  max-width: 250px;
+  border-radius: 12px;
+  background: #edf1ee;
+}
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 3px;
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #edf1ee;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.says p {
+  margin: 0;
+  padding: 0;
+}
+.mycomment {
+  margin: 10px 0;
+}
+.mycomment p {
+  display: inline-block;
+  position: relative;
+  margin: 0 10px 0 0;
+  padding: 8px;
+  max-width: 250px;
+  border-radius: 12px;
+  background: #dcf5f1;
+  font-size: 15px;
+}
+.mycomment p:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #dcf5f1;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
 }

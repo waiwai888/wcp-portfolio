@@ -1,28 +1,35 @@
-<div class="chat-room">
+<div id="scroll", class="chat-room">
   <% if @chats != nil %>
-    <div class="">
+    <div class="chats">
       <% chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
-          <p class="current_user-message_box">
-            <span class="current_user-message"><%= chat.message %></span>
-            <span class="current_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-          </p>
+          <div class="mycomment">
+            <div class="my-message">
+              <p><%= chat.message %></p>
+            </div>
+            <div class="create-time">
+              <%= chat.created_at.strftime("%H:%M") %>
+            </div>
+          </div>
         <% else %>
-          <p class="partner_user-message_box">
-            <span class="partner_user-message"><%= chat.message %></span>
-            <span class="partner_user-message_time"><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-          </p>
+          <div class="fukidasi">
+            <div class="faceicon">
+              <%= attachment_image_tag chat.user, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image.png", size: "50x50", class: "rounded-circle", style: "object-fit: cover;" %>
+            </div>
+            <div class="chatting">
+              <div class="says">
+                <p><%= chat.message %></p>
+              </div>
+              <div class="create-time">
+                <p><%= chat.created_at.strftime("%H:%M") %></p>
+              </div>
+            </div>
+          </div>
         <% end %>
       <% end %>
     </div>
   <% else %>
-    <P><%= user.nickname %>さんと会話をしてみよう！</P>
+    <p><%= user.nickname %>さんと会話をしてみよう！</p>
   <% end %>
 </div>
-<div class="row col-md-10 col-12 form-inline">
-  <%= form_with model: chat do |f| %>
-    <%= f.text_field :message, class: "form-control" %>
-    <%= f.hidden_field :room_id %>
-    <%= f.submit '送信', class: "btn btn-success" %>
-  <% end %>
-</div>
+

@@ -27,8 +27,8 @@
             <%= render 'layouts/favorite', post: post %>
           </div>
           <!--フォローボタン設置-->
-          <div id="follow_btn_<%= post.user.id %>", class="pb-2">
-            <%= render 'layouts/follow', user: post.user %>
+          <div class="follow_btn_<%= post.user.id %>", class="pb-2">
+            <%= render partial: 'layouts/follow', locals: { user: post.user } %>
           </div>
         </div>
       </div>

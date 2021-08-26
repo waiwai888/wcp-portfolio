@@ -46,10 +46,15 @@ document.addEventListener("turbolinks:load", function() {
     $($(this).attr("href")).show();
     event.preventDefault();
   });
-})
-// 通知フェードイン/アウト
- $(function () {
-    $(document).ready(function() {
-        $("#notice-box").stop().fadeIn(1200).delay(1500).fadeOut("slow");
-    });
+  // 通知フェードイン/アウト
+  $("#notice-box").stop().fadeIn(1200).delay(1500).fadeOut("slow");
+  // チャットアラート
+  $('#chat-form').submit(function() {
+      if ($.trim($("#chat-message").val()) === "") {
+          alert('you did not fill out one of the fields');
+          return false;
+      }
   });
+})
+
+  
