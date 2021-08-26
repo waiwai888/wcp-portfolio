@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
-    @tag_list = Tag.all
+    @tag_list = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(10).pluck(:tag_id))
   end
 
   def followed_index
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
-    @post_comments = PostComment.all
+    @post_comments = PostComment.all.order(created_at: :desc)
     @post_tags = @post.tags
   end
 

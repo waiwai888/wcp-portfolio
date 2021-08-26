@@ -47,10 +47,9 @@ document.addEventListener("turbolinks:load", function() {
     event.preventDefault();
   });
 })
-
-
+// 通知フェードイン/アウト
  $(function () {
-      $(document).ready(function() {
-          $("#notice-box").fadeOut(2000);
-      });
+    $(document).ready(function() {
+        $("#notice-box").stop().fadeIn(1200).delay(1500).fadeOut("slow");
+    });
   });

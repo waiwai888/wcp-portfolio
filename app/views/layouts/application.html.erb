@@ -21,10 +21,6 @@
         </div>
        <% end %>
 
-        <div id="notice_async">
-          <%= render partial: "post_comments/notice", locals: { notice: @notice }%>
-        </div>
-
       <%= yield %>
       <span id="back">
         <%= link_to "#header" do %>

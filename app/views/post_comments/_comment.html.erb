@@ -28,13 +28,13 @@
             <td>
                 <%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %>
             </td>
-            <td class="destroy_comment">
-              <% if post_comment.user == current_user %>
+            <% if post_comment.user == current_user %>
+              <td class="destroy_comment">
                 <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
-              <% end %>
             </td>
+            <% end %>
           </tr>
         </div>
       <% end %>
@@ -44,7 +44,7 @@
   <div class="new-comment mt-3">
     <%= form_with(model:[post, post_comment]) do |f| %>
       <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control" %>
-      <%= f.submit "コメントする", class: 'btn btn-success mt-3'%>
+      <%= f.submit "コメントする", class: 'btn btn-success mt-3', id: "comment_btn" %>
     <% end %>
   </div>
 </div>
