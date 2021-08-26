@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head id="header">
     <title>Campist</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,15 +21,11 @@
         </div>
        <% end %>
 
-        <div id="notice_async">
-          <%= render partial: "post_comments/notice", locals: { notice: @notice }%>
-        </div>
-
       <%= yield %>
       <span id="back">
-        <a href="#">
+        <%= link_to "#header" do %>
           <i class="fas fa-angle-up fa-3x"></i>
-        </a>
+        <% end %>
       </span>
     </main>
     <footer class="footer w-100">

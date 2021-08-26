@@ -9,12 +9,6 @@
             <%= attachment_image_tag @user, :profile_image, size: "100x100", format: "jpeg", fallback: "no_image.png", size: "100x100", class: "rounded-circle", style: "object-fit: cover;" %>
           <% end %>
         </div>
-        <!--DMボタン設置-->
-        <div class="dm_btn mt-2">
-          <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-            <%= link_to 'chat', chat_path(@user.id), class: "btn btn-success" %>
-          <% end %>
-        </div>
       </div>
       <div class="col-md-9">
         <div class="nickname mr-3 d-inline-block">
@@ -22,9 +16,15 @@
         </div>
         <% if @user != current_user %>
           <!--フォローボタン-->
-          <div class="btn_follow d-inline-block">
+          <div class="follow_btn_<%= @user.id %>", class="d-inline-block">
             <%= render 'layouts/follow', user: @user %>
           </div>
+          <!--DMボタン設置-->
+          <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+            <div class="dm_btn d-inline-block">
+              <%= link_to 'chat', chat_path(@user.id), class: "btn btn-success btn-sm" %>
+            </div>
+          <% end %>
         <% else %>
           <!--ユーザー情報編集ボタン-->
           <div class="user-edit d-inline-block">

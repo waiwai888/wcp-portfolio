@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="page-heading">Post edit</h4>
+  <h4 class="page-heading">投稿編集</h4>
   <% if @post.errors.any? %>
     <%= @post.errors.count %>件のエラーが発生しました
     <% @post.errors.full_messages.each do |message| %>
@@ -16,7 +16,7 @@
         <div class="mt-3">" ,（半角）"を入力することで複数のタグを登録することができます。</div>
         <%= f.text_field :tag_name, placeholder: '例）キャンプ飯,男飯', class: "form-control" %>
       </div>
-      <%= f.submit 'Update', class: 'btn btn-success d-block mt-3' %>
+      <%= f.submit '更新する', class: 'btn btn-success d-block mt-3' %>
     <% end %>
   </div>
   <div class="post-back mt-3">
