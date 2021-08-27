@@ -185,7 +185,7 @@ $xxl: 2040px;
     margin-left: 10px;
   }
   @include xs1{
-    margin-left: 40px;
+    margin-left: 10px;
   }
   @include xxs{
     margin-left: 20px;
@@ -197,7 +197,7 @@ $xxl: 2040px;
     margin-left: 20px;
   }
   @include xs1{
-    margin-left: 50px;
+    margin-left: 20px;
   }
   @include xxs{
     margin-left: 10px;
@@ -209,8 +209,4 @@ $xxl: 2040px;
     padding: 1rem;
     border-radius: 30px;
     display: inline-block;
-}
-
-.follow-edit_btn {
-  
 }

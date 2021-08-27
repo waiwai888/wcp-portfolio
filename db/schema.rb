@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_112445) do
     t.datetime "updated_at", null: false
     t.integer "post_id"
     t.integer "chat_id"
+    t.integer "room_id"
   end
 
   create_table "post_comments", force: :cascade do |t|

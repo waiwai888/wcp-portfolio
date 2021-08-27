@@ -2,46 +2,49 @@
   <div class="row ml-3">
     <h4 class="page-heading mr-3">新規アカウント登録（無料）</h2>
   </div>
-  <div class="ml-3">
+  <div class="ml-3 d-block mb-4">
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field row col-sm-12 col-md-6">
-        <%= f.label :name %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+      <div class="error-message mt-3 mb-3">
+        <%= render "devise/shared/error_messages", resource: resource %>
       </div>
-
-      <div class="field row col-sm-12 col-md-6">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-      </div>
-
-      <div class="field row col-sm-12 col-md-6">
-        <%= f.label :nickname %><br />
-        <%= f.text_field :nickname, autocomplete: "nicknamel", class: "form-control" %>
-      </div>
-
-      <div class="field row col-sm-12 col-md-6">
-        <%= f.label :account_name %><br />
-        <%= f.text_field :account_name, autocomplete: "account_name", class: "form-control" %>
-      </div>
-
-      <div class="field row col-sm-12 col-md-6">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      </div>
-
-      <div class="field row col-sm-12 col-md-6">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-      </div>
-
-      <div class="actions mt-3">
-        <%= f.submit "新規登録（無料）", class: "btn btn-success" %>
+      <div class="sign_up-form">
+        <div class="field row col-sm-12 col-md-6 d-block">
+          <%= f.label :name %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+        </div>
+  
+        <div class="field row col-sm-12 col-md-6 d-block">
+          <%= f.label :email %>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        </div>
+  
+        <div class="field row col-sm-12 col-md-6 d-block">
+          <%= f.label :nickname %>
+          <%= f.text_field :nickname, autocomplete: "nicknamel", class: "form-control" %>
+        </div>
+  
+        <div class="field row col-sm-12 col-md-6 d-block">
+          <%= f.label :account_name %>
+          <%= f.text_field :account_name, autocomplete: "account_name", class: "form-control" %>
+        </div>
+  
+        <div class="field row col-sm-12 col-md-6 d-block">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+  
+        <div class="field row col-sm-12 col-md-6 d-block">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+  
+        <div class="actions mt-3">
+          <%= f.submit "新規登録（無料）", class: "btn btn-success" %>
+        </div>
       </div>
     <% end %>
   </div>

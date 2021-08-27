@@ -33,10 +33,10 @@
             <div class="follow-edit_btn">
               <!--フォローor編集・削除ボタン設置-->
               <% if @post.user == current_user %>
-                <%= link_to edit_post_path(@post), class: "edit_book_#{@post.id} fa-2x" do %>
+                <%= link_to edit_post_path(@post), class: "edit_book_#{@post.id} mr-2" do %>
                   <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "destroy_book_#{@post.id} fa-2x" do %>
+                <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "destroy_book_#{@post.id}" do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               <% else %>

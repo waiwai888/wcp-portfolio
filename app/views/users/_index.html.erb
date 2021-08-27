@@ -1,19 +1,17 @@
-<div class="users-index">
-  <div class="row col-md-6">
+  <div class="row col-xs-12 mt-3 following-index">
     <% users.each do |user| %>
-      <div class="col-4 col-md-3 mb-2">
+      <div class="col-3 col-md-4 mb-3">
         <%= link_to user_path(user) do %>
           <%= attachment_image_tag user, :profile_image, size: "60x60", format: "jpeg", fallback: "no_image.png", size: "60x60", class: "rounded-circle", style: "object-fit: cover;" %>
         <% end %>
       </div>
-      <div class="col-4 col-md-4 mb-2 pt-3">
+      <div class="col-4 col-md-4 mb-2 pt-3 mb-3">
         <%= link_to user_path(user) do %>
           <%= user.account_name %>
         <% end %>
       </div>
-      <div class="follow_btn_<%= user.id %>", class="col-4 col-md-5 mb-2 pt-2">
+      <div class="col-5 col-md-4 pl-2 mb-2 pt-2 follow_btn_<%= user.id %>">
         <%= render 'layouts/follow', user: user %>
       </div>
     <% end %>
   </div>
-</div>
