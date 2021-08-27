@@ -14,7 +14,7 @@ module NotificationsHelper
           tag.a(@visiter.nickname, href:user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:post_path(notification.post_id), style:"font-weight: bold;")+"にコメントしました"
         when "dm" then
           @chat = Chat.find_by(id: notification.chat_id)&.message
-          tag.a(@visiter.nickname, href:user_path(@visiter), style:"font-weight: bold;")+"があなたに"+tag.a('メッセージ',href:chat_path(notification.chat_id), style:"font-weight: bold;")+"を送りました"
+          tag.a(@visiter.nickname, href:user_path(@visiter), style:"font-weight: bold;")+"があなたに"+tag.a('メッセージ',href:chat_path(notification.visiter), style:"font-weight: bold;")+"を送りました"
       end
     end
     def unchecked_notifications

@@ -10,13 +10,13 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9 users-show_right">
         <div class="nickname mr-3 d-inline-block">
           <p><strong><%= @user.nickname %></strong></p>
         </div>
         <% if @user != current_user %>
           <!--フォローボタン-->
-          <div class="follow_btn_<%= @user.id %>", class="d-inline-block">
+          <div class="follow_btn_<%= @user.id %> d-inline-block">
             <%= render 'layouts/follow', user: @user %>
           </div>
           <!--DMボタン設置-->

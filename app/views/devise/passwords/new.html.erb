@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="row ml-3">
-    <h4 class="page-heading">パスワードをお忘れの方</h4>
-  </div>
-  <div class="row ml-3">
+  <h4 class="page-heading ml-3 mr-3">パスワードをお忘れの方</h4>
+  <div class="ml-3">
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="error-message mt-3 mb-3">
+        <%= render "devise/shared/error_messages", resource: resource %>
+      </div>
     
-      <div class="field">
+      <div class="field row col-sm-12 col-md-6">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
