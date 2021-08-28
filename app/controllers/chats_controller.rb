@@ -1,5 +1,7 @@
 class ChatsController < ApplicationController
   before_action :authenticate_user!
+  before_action :follow_each_other
+  
   def create
     @chat = current_user.chats.new(chat_params)
     @room = @chat.room
@@ -30,6 +32,13 @@ class ChatsController < ApplicationController
 
     def chat_params
       params.require(:chat).permit(:message, :room_id)
+    end
+    
+    def follow_each_other
+      @user = User.find(params[:id])
+      unless current_user != @user && current_user.following?(@user) && @user.following?(current_user) 
+        redirect_to user_path(@current_user)
+      end
     end
 
 end
