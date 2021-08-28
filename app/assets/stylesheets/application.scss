@@ -236,7 +236,7 @@ body {
   background-color: $bgColor;
 }
 
-.container {
+.error-container {
   font-family: 'Varela Round', sans-serif;
   color: $booFaceColor;
   position: relative;
@@ -244,7 +244,7 @@ body {
   text-align: center;
   font-size: $jaggedDistance / 2;
   
-  h1 {
+  .error-head {
     font-size: $jaggedDistance;
     margin-top: $jaggedDistance;
   }
