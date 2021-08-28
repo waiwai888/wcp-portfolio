@@ -51,7 +51,7 @@ document.addEventListener("turbolinks:load", function() {
   // チャットアラート
   $('#chat-form').submit(function() {
       if ($.trim($("#chat-message").val()) === "") {
-          alert('you did not fill out one of the fields');
+          alert('１文字以上入力してください');
           return false;
       }
   });
