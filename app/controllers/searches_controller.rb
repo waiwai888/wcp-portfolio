@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-
+  before_action :authenticate_user!
   def search
 		@content = params[:content]
     if @content.include?("#") #頭文字が'#'の場合は
