@@ -1,1 +1,22 @@
-<p>404error</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The page you were looking for doesn't exist (404)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <div class="container">
+    <div class="boo-wrapper">
+      <div class="boo">
+        <div class="face"></div>
+      </div>
+      <div class="shadow"></div>
+
+      <h1>404</h1>
+      <p>
+        お探しのページは存在しません。
+      </p>
+      <div class="top-link_btn"><%= link_to "Topへ戻る", root_path %></div>
+    </div>
+  </div>
+</html>
