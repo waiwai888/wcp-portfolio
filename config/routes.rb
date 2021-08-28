@@ -22,4 +22,5 @@ Rails.application.routes.draw do
     get 'search', to: 'posts#search'
   end
 
+
 end
