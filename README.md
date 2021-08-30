@@ -15,26 +15,26 @@ dmを使用し、コミュニケーションをとることができます。
 http://52.198.169.110/
 
 ### テストアカウント
--email: test1@test
--password: test1@test
+- email: test1@test
+- password: test1@test
 
 ## 機能一覧
--ユーザー登録・ログイン機能(devise)
--投稿機能
-  -画像投稿(refile)
-  -タグ機能(ランキング機能）
--コメント機能(Ajax)
--いいね機能(Ajax)
--フォロー機能(Ajax)
--画像スライダー(JQuery)
--検索機能(同一検索窓/タグ・投稿本文)
+- ユーザー登録・ログイン機能(devise)
+- 投稿機能
+  - 画像投稿(refile)
+  - タグ機能(ランキング機能）
+- コメント機能(Ajax)
+- いいね機能(Ajax)
+- フォロー機能(Ajax)
+- 画像スライダー(JQuery)
+- 検索機能(同一検索窓/タグ・投稿本文)
 
 ### テスト
--Rspec（model/単体）
+- Rspec（model/単体）
 
 ### レスポンシブ
--Sass
--Bootstrap
+- Sass
+- Bootstrap
 
 https://docs.google.com/spreadsheets/d/1Jq56_Ko5ymBgjyjmGk8KeJUPmFzBYqclVHiHuVsO22Y/edit?usp=sharing
 
@@ -61,3 +61,8 @@ https://docs.google.com/spreadsheets/d/1Jq56_Ko5ymBgjyjmGk8KeJUPmFzBYqclVHiHuVsO
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+
+## 今後追加したい機能
+- レビュー機能（キャンプ場、雑貨などのクチコミ投稿）
+- 投稿画像拡張子統一(heicに対応)
+- ユーザーの導線を考慮したページ遷移・レイアウト
