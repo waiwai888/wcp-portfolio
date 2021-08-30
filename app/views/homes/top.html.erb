@@ -2,7 +2,11 @@
   <div class="slider_box" style="position: relative;">
     <div class="mv-head">
       <h1 class="mv-title">Campist</h1>
-      <p class="mv-text"><%= link_to "Sign Up(free)", new_user_registration_path, class: "btn btn-success rounded-pill" %></p>
+      <p class="mv-text"><%= link_to 'ゲスト(閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-success rounded-pill" %></p>
+      <p class="mv-text">
+        <%= link_to 'ログイン', new_user_session_path, method: :post, class: "btn btn-success rounded-pill" %><br>
+        email/password: <strong>test1@test</strong>
+      </p>
     </div>
     <div class="bxslider">
       <% @posts.each do |post| %>
