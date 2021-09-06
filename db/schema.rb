@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_09_02_124717) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "site_id", null: false
-    t.integer "score", default: 0, null: false
+    t.float "score", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

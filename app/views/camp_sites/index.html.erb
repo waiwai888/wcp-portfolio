@@ -1,0 +1,18 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>サイト名</th>
+    </thead>
+    <tbody>
+      <% @camp_sites.each do |camp_site| %>
+        <tr>
+          <td>
+            <%= link_to camp_site_path(camp_site) do %>
+              <%= camp_site.site_name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
