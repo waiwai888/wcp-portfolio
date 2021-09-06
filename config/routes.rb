@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   resources :tags do
     get 'search', to: 'posts#search'
   end
-
+  
+  resources :camp_sites, only: [:new, :create, :destroy, :index, :show] do
+    resources :reviews, only: [:create, :destroy]
+  end
 
 end

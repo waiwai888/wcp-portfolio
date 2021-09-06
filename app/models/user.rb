@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   #通知機能
   # 自分が通知を作った場合→foreign_keyにvisiter_id(自分のuser.id)を指定し、active_notificationsモデル（実態はnotificationモデル）へアクセスする

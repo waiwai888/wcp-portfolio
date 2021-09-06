@@ -5,7 +5,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.text :body, null: false
       t.integer :site_id, null: false
-      t.integer :score, default: 0, null: false 
+      t.float :score, default: 0, null: false 
 
       t.timestamps
     end
