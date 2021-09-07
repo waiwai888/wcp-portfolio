@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   
   def create
-    @camp_site = CampSite.find(params[:id])
+    @camp_site = CampSite.find(params[:camp_site_id])
     @review = Review.new(review_params)
     @review.user_id = current_user.id
-    if @review.save
+    
+    if @review.save!
       redirect_back(fallback_location: root_path)
     end
   end
@@ -19,7 +20,7 @@ class ReviewsController < ApplicationController
   private
   
   def review_params
-    params.require(:review).permit(:title, :site_id, :body, :score)
+    params.require(:review).permit(:title, :camp_site_id, :body, :score)
   end
   
 end

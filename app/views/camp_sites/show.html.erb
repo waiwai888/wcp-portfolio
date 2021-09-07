@@ -1,5 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="jquery.raty.js"></script>
 <div class="container">
   <% @reviews.each do |review| %>
     <%= review.title %>
@@ -10,9 +8,9 @@
   <% end %>
 
   <!-- 口コミ入力フォーム -->
-  <%= form_with(model: @review, local: true) do |f| %>
+  <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
     <!--キャンプサイトidの送信-->
-    <%= f.hidden_field :site_id, { value: @camp_site.id} %>
+    <%= f.hidden_field :camp_site_id, { value: @camp_site.id} %>
     <div class="star-form-group" id="star1">            <%#id要素の付与がポイント%>
       <%= f.label :score,'評価', class:'star-title' %>　<%#保存したいカラムの指定%>
       <%= f.hidden_field :score, id: :review_star %>
@@ -22,7 +20,6 @@
     <script>
     $(document).on('turbolinks:load', function(){
       $('#star1').raty({
-        alert('JavaScriptのアラート');
         size     : 38,                                    //星のサイズ
         starOff:  '<%= asset_path('star-off.png') %>',    //imagesフォルダより星画像の呼び出し
         starOn : '<%= asset_path('star-on.png') %>',
@@ -35,9 +32,13 @@
 
     <!-- 口コミ -->
     <div class="form-group row">
-      <%= f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+      <%= f.label :body, '口コミ内容 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-9">
-        <%= f.text_area :content, class: "form-control", rows: "8", placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。まずは投稿してみましょう！投稿してから編集もできますよ！' %>
+        <%= f.text_area :body, class: "form-control", rows: "8", placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。まずは投稿してみましょう！投稿してから編集もできますよ！' %>
+      </div>
+      <div>
+        <%= f.label :title, '件名 ', class:'col-md-3 col-form-label' %>
+        <%= f.text_field :title, class: "form-control", rows: "8" %>
       </div>
     </div>
 

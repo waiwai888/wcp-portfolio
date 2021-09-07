@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false
       t.string :title, null: false
       t.text :body, null: false
-      t.integer :site_id, null: false
+      t.integer :camp_site_id, null: false
       t.float :score, default: 0, null: false 
 
       t.timestamps
