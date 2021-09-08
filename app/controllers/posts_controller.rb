@@ -10,7 +10,15 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     tag_list = params[:post][:tag_name].split(",") #送られてきた値を,で区切って配列化
-    if @post.save
+    if params[:post][:site_name]
+      @camp_site = CampSite.where(site_name: params[:post][:site_name]).first
+      if @camp_site == nil
+        @camp_site = CampSite.new(camp_site_params)
+        @camp_site.save
+      end
+      @post.camp_site_id = @camp_site.id
+    end
+    if @post.save!
       @post.save_tag(tag_list)
       redirect_to posts_path, notice: "投稿しました"
     else
@@ -81,4 +89,9 @@ class PostsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
+  def camp_site_params
+    params.require(:post).permit(:site_name)
+  end
+
 end
