@@ -5,8 +5,12 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     
-    if @review.save!
+    if @review.save
+      flash[:notice] = "レビューを投稿しました"
       redirect_back(fallback_location: root_path)
+    else
+      @camp_site = CampSite.find(params[:camp_site_id])
+      render camp_site_path(@camp_site)
     end
   end
 
