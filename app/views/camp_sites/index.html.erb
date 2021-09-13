@@ -11,6 +11,22 @@
               <%= camp_site.site_name %>
             <% end %>
           </td>
+          <td>
+            <div id="star-score"></div> (<%= camp_site.reviews.average(:score) %>点)
+          </td>
+          
+           <!--星評価-->
+            <script>
+            $('#star-score').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+            });
+          </script>  
+          
         </tr>
       <% end %>
     </tbody>

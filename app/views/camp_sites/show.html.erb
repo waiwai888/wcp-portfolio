@@ -1,25 +1,42 @@
 <div class="container">
-  <% @reviews.each do |review| %>
-    <%= review.title %>
-    <%= link_to user_path(review.user) do %>
-      <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
-    <% end %>
-    <%= review.body %>
-  <% end %>
+  <table class="table">
+    <thead>
+      <th></th>
+      <th>評価</th>
+      <th>タイトル</th>
+      <th>レビュー本文</th>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td>
+            <%= link_to user_path(review.user) do %>
+              <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
+            <% end %><br>
+            <%= link_to review.user.name, user_path(review.user), class: "text-center" %>
+          </td>
+          <td class="star1_<%= @camp_site.id %>"><%= review.score %></td>
+          <td class="align-items-center"><%= review.title %></td>
+          <td class="align-items-center"><%= review.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate(@reviews) %>
 
   <!-- 口コミ入力フォーム -->
   <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
     <!--キャンプサイトidの送信-->
     <%= f.hidden_field :camp_site_id, { value: @camp_site.id} %>
-    <div class="star-form-group" id="star1">            <%#id要素の付与がポイント%>
-      <%= f.label :score,'評価', class:'star-title' %>　<%#保存したいカラムの指定%>
-      <%= f.hidden_field :score, id: :review_star %>
+    <div class="star-form-group row star1">            <%#id要素の付与がポイント%>
+      <%= f.label :score,'評価', class:'star-title col-md-3 col-form-label' %>　<%#保存したいカラムの指定%>
+      <%= f.hidden_field :score, id: :review_star, class: "col-md-9" %>
     </div>
 
     <!-- 評価javascript -->
     <script>
     $(document).on('turbolinks:load', function(){
-      $('#star1').raty({
+      $('.star1 ').raty({
         size     : 38,                                    //星のサイズ
         starOff:  '<%= asset_path('star-off.png') %>',    //imagesフォルダより星画像の呼び出し
         starOn : '<%= asset_path('star-on.png') %>',
@@ -32,13 +49,15 @@
 
     <!-- 口コミ -->
     <div class="form-group row">
+      <%= f.label :title, '件名 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :title, class: "form-control", rows: "8" %>
+      </div>
+    </div>
+    <div class="form-group row">
       <%= f.label :body, '口コミ内容 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-9">
-        <%= f.text_area :body, class: "form-control", rows: "8", placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。まずは投稿してみましょう！投稿してから編集もできますよ！' %>
-      </div>
-      <div>
-        <%= f.label :title, '件名 ', class:'col-md-3 col-form-label' %>
-        <%= f.text_field :title, class: "form-control", rows: "8" %>
+        <%= f.text_area :body, class: "form-control", rows: "8", placeholder:'よかったこと、感想などレビューを書き込んでください' %>
       </div>
     </div>
 

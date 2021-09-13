@@ -16,7 +16,7 @@ class CampSitesController < ApplicationController
   
   def show
     @camp_site = CampSite.find(params[:id])
-    @reviews = Review.all
+    @reviews = @camp_site.reviews.page(params[:page]).per(5)
     @review = Review.new
   end
   
