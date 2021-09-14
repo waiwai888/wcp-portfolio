@@ -9,8 +9,10 @@ class ReviewsController < ApplicationController
       flash[:notice] = "レビューを投稿しました"
       redirect_back(fallback_location: root_path)
     else
+      @review = Review.new(review_params)
       @camp_site = CampSite.find(params[:camp_site_id])
-      render camp_site_path(@camp_site)
+      @reviews = @camp_site.reviews.page(params[:page]).per(5)
+      render "camp_sites/show"
     end
   end
 
