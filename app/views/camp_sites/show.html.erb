@@ -15,7 +15,7 @@
             <% end %><br>
             <%= link_to review.user.name, user_path(review.user), class: "text-center" %>
           </td>
-          <td class="star1_<%= @camp_site.id %>"><%= review.score %></td>
+          <td><div id="star-score-<%= review.id %>"></div> (<%= review.score %>点)</td>
           <td class="align-items-center"><%= review.title %></td>
           <td class="align-items-center"><%= review.body %></td>
         </tr>
@@ -23,7 +23,14 @@
     </tbody>
   </table>
   <%= paginate(@reviews) %>
-
+  <div class="review-error">
+    <% if @review.errors.any? %>
+      <%= @review.errors.count %>件のエラーが発生しました<br>
+      <% @review.errors.full_messages.each do |message| %>
+        ・<%= message %><br>
+      <% end %>
+    <% end %>
+  </div>
   <!-- 口コミ入力フォーム -->
   <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
     <!--キャンプサイトidの送信-->
@@ -32,20 +39,6 @@
       <%= f.label :score,'評価', class:'star-title col-md-3 col-form-label' %>　<%#保存したいカラムの指定%>
       <%= f.hidden_field :score, id: :review_star, class: "col-md-9" %>
     </div>
-
-    <!-- 評価javascript -->
-    <script>
-    $(document).on('turbolinks:load', function(){
-      $('.star1 ').raty({
-        size     : 38,                                    //星のサイズ
-        starOff:  '<%= asset_path('star-off.png') %>',    //imagesフォルダより星画像の呼び出し
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'review[score]',     //reviewモデルのcomfortカラムに保存
-        half: true,                       //星半分を許可する。DBには0.5単位の数値が保存される
-      });
-    });
-    </script>
 
     <!-- 口コミ -->
     <div class="form-group row">
@@ -70,3 +63,30 @@
 
   <% end %>
 </div>
+
+<!-- 評価javascript -->
+<script>
+<% @reviews.each do |review| %>
+  $(document).on('turbolinks:load', function(){
+    $('#star-score-<%= review.id %>').raty({
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= review.score %>
+    });
+  });
+<% end %>
+$(document).on('turbolinks:load', function(){
+  $('.star1').raty({
+    size: 36, //星のサイズ
+    starOff:  '<%= asset_path('star-off.png') %>', //imagesフォルダから星画像を呼び出す（３種）
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[score]',     //reviewモデルのscoreカラムに保存
+    half: true               //星半分を許可する。DBには0.5単位の数値が保存される
+  });
+});
+
+</script>
