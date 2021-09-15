@@ -12,11 +12,13 @@
             <% end %>
           </td>
           <td>
-            <div id="star-score-<%= camp_site.id %>"></div> (<%= camp_site.reviews.average(:score) %>点)
+            <% if camp_site.reviews.present? %>
+              <div id="star-score-<%= camp_site.id %>"></div> (<%= camp_site.reviews.average(:score) %>点)
+            <% else %>
+              <p>評価はまだありません</p>
+            <% end %>
           </td>
-          
         </tr>
-        
       <% end %>
     </tbody>
   </table>
@@ -25,16 +27,16 @@
 <!--星評価-->
 <script>
   <% @camp_sites.each do |camp_site| %>
-  $(document).on('turbolinks:load', function(){
-    $('#star-score-<%= camp_site.id %>').raty({
-      // size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= camp_site.reviews.average(:score) %>
+    $(document).on('turbolinks:load', function(){
+      $('#star-score-<%= camp_site.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= camp_site.reviews.average(:score) %>
+      });
     });
-  });
   <% end %>
-</script>  
+</script>

@@ -1,28 +1,32 @@
-<div class="container">
-  <table class="table">
-    <thead>
-      <th></th>
-      <th>評価</th>
-      <th>タイトル</th>
-      <th>レビュー本文</th>
-    </thead>
-    <tbody>
-      <% @reviews.each do |review| %>
-        <tr>
-          <td>
-            <%= link_to user_path(review.user) do %>
-              <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
-            <% end %><br>
-            <%= link_to review.user.name, user_path(review.user), class: "text-center" %>
-          </td>
-          <td><div id="star-score-<%= review.id %>"></div> (<%= review.score %>点)</td>
-          <td class="align-items-center"><%= review.title %></td>
-          <td class="align-items-center"><%= review.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= paginate(@reviews) %>
+<div class="container-fluid">
+  <% if @reviews.present? %>
+    <table class="table">
+      <thead>
+        <th></th>
+        <th>評価</th>
+        <th>タイトル</th>
+        <th>レビュー本文</th>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td>
+              <%= link_to user_path(review.user) do %>
+                <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
+              <% end %><br>
+              <%= link_to review.user.name, user_path(review.user), class: "text-center" %>
+            </td>
+            <td><div id="star-score-<%= review.id %>"></div> (<%= review.score %>点)</td>
+            <td class="align-items-center"><%= review.title %></td>
+            <td class="align-items-center"><%= review.body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate(@reviews) %>
+  <% else %>
+    <p>レビューはありません。</p>
+  <% end %>
   <div class="review-error">
     <% if @review.errors.any? %>
       <%= @review.errors.count %>件のエラーが発生しました<br>
@@ -35,8 +39,8 @@
   <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
     <!--キャンプサイトidの送信-->
     <%= f.hidden_field :camp_site_id, { value: @camp_site.id} %>
-    <div class="star-form-group row star1">            <%#id要素の付与がポイント%>
-      <%= f.label :score,'評価', class:'star-title col-md-3 col-form-label' %>　<%#保存したいカラムの指定%>
+    <div class="star-form-group row star1">
+      <%= f.label :score,'評価', class:'star-title col-md-3 col-form-label' %>
       <%= f.hidden_field :score, id: :review_star, class: "col-md-9" %>
     </div>
 
@@ -60,24 +64,26 @@
         <%= f.submit '投稿する', class:"btn btn-success" %>
       </div>
     </div>
-
   <% end %>
+  <!--関連posts-->
+  <div class="row feeds-index">
+    <%= render 'posts/feeds', posts: @posts %>
+  </div>
 </div>
 
 <!-- 評価javascript -->
 <script>
-<% @reviews.each do |review| %>
   $(document).on('turbolinks:load', function(){
-    $('#star-score-<%= review.id %>').raty({
+    $('#star-score-<%= @review.id %>').raty({
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
       starHalf: '<%= asset_path('star-half.png') %>',
       half: true,
       readOnly: true,
-      score: <%= review.score %>
+      score: <%= @review.score %>
     });
   });
-<% end %>
+
 $(document).on('turbolinks:load', function(){
   $('.star1').raty({
     size: 36, //星のサイズ

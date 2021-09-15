@@ -18,6 +18,7 @@ class CampSitesController < ApplicationController
     @camp_site = CampSite.find(params[:id])
     @reviews = @camp_site.reviews.page(params[:page]).per(5)
     @review = Review.new
+    @posts = Post.where(camp_site_id: @camp_site.id)
   end
   
   private
