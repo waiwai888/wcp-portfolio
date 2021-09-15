@@ -73,47 +73,56 @@ Post.create!(
     {
       user_id: '1',
       body: '晴天！新しいチェアの座り心地が最高、、、',
-      image: File.open('./app/assets/images/beach.jpg')
+      image: File.open('./app/assets/images/beach.jpg'),
+      camp_site_id: 1
     },
     {
       user_id: '2',
       body: '週末は1人で。',
-      image: File.open('./app/assets/images/campfire.jpg')
+      image: File.open('./app/assets/images/campfire.jpg'),
+      camp_site_id: 2
     },
     {
       user_id: '3',
       body: '新しいカップ可愛い♡',
-      image: File.open('./app/assets/images/cup.jpg')
+      image: File.open('./app/assets/images/cup.jpg'),
+      camp_site_id: 3
     },
     {
       user_id: '1',
       body: '新しいナイフの切り心地が最高です。',
-      image: File.open('./app/assets/images/explosive.jpg')
+      image: File.open('./app/assets/images/explosive.jpg'),
+      camp_site_id: 4
     },
     {
       user_id: '2',
       body: 'ファミキャン',
-      image: File.open('./app/assets/images/food.jpg')
+      image: File.open('./app/assets/images/food.jpg'),
+      camp_site_id: 5
     },
     {
       user_id: '3',
       body: 'お下がりのランタン',
-      image: File.open('./app/assets/images/lantern.jpg')
+      image: File.open('./app/assets/images/lantern.jpg'),
+      camp_site_id: 6
     },
     {
       user_id: '1',
       body: 'トマト×ジャガイモのスープ',
-      image: File.open('./app/assets/images/stew.jpg')
+      image: File.open('./app/assets/images/stew.jpg'),
+      camp_site_id: 1
     },
     {
       user_id: '2',
       body: '新しい雑貨を使ってコーディネート！',
-      image: File.open('./app/assets/images/tent1.jpg')
+      image: File.open('./app/assets/images/tent1.jpg'),
+      camp_site_id: 2
     },
     {
       user_id: '3',
       body: '今日のコーディネート',
-      image: File.open('./app/assets/images/tent2.jpg')
+      image: File.open('./app/assets/images/tent2.jpg'),
+      camp_site_id: 3
     }
   ]
 )
@@ -161,3 +170,14 @@ Relationship.create!(
     {follower_id: '4', followed_id: '3', id: 10}
     ]
   )
+  
+  CampSite.create!(
+    [
+      {site_name: "ほったらかしキャンプ場", id: 1},
+      {site_name: "ふもとっぱらキャンプ場", id: 2},
+      {site_name: "朝霧高原キャンプ場", id: 3},
+      {site_name: "長瀞オートキャンプ場", id: 4},
+      {site_name: "一番星ヴィレッジ", id: 5},
+      {site_name: "イレブンオートキャンプパーク", id: 6}
+      ]
+    )
