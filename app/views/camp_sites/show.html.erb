@@ -85,6 +85,7 @@
   });
 
 $(document).on('turbolinks:load', function(){
+  $('.star1').empty(); //星の表示をリセット（星の増加防止）
   $('.star1').raty({
     size: 36, //星のサイズ
     starOff:  '<%= asset_path('star-off.png') %>', //imagesフォルダから星画像を呼び出す（３種）

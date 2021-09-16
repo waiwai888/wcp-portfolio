@@ -12,7 +12,8 @@ class ReviewsController < ApplicationController
       @review = Review.new(review_params)
       @camp_site = CampSite.find(params[:camp_site_id])
       @reviews = @camp_site.reviews.page(params[:page]).per(5)
-      render "camp_sites/show"
+      @posts = Post.where(camp_site_id: @camp_site.id)
+      redirect_back(fallback_location: root_path)
     end
   end
 
