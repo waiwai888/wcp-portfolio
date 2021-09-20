@@ -1,3 +1,55 @@
-// Place all the styles related to the camp_sites controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// .reviews-table{
+//   border-collapse: collapse;
+//   width: 100%;
+// }
+.reviews-table th,
+.reviews-table td{
+  padding: 10px;
+  border: solid 1px #ccc;
+  text-align:center;
+  box-sizing:border-box;
+}
+.reviews-table th {
+  background: rgba(151, 168, 166, .3);
+  color: #fff;
+  
+}
+@media screen and (max-width: 640px) {
+  .reviews-table .head{
+    display:none;
+  }
+  .reviews-table {
+    width: 100%;
+  }
+  .reviews-table td,
+  .reviews-table th{
+    display: block;
+    width: 100%;
+    border-bottom:none;
+  }
+  .reviews-table td{
+    padding: 0px 12px 0 0;
+    display: block;
+    width: 100%;
+    line-height: 2.5;
+    text-align: center;
+  }
+  .reviews-table td:before{
+    color: #fff;
+    content: attr(data-label);
+    font-weight: bold;
+    padding: 0px 10px;
+    display: inline;
+    background-color: #ed1e79;
+    margin-right: 10px;
+    float: left;
+  }
+  .reviews-table tr:last-child{
+    border-bottom: solid 1px #ccc;
+  }
+  
+  .reviews-table th:first-child {
+    background: rgba(157, 168, 151, .6);
+  }
+  
+}
