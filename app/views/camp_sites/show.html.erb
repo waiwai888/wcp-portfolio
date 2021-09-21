@@ -23,6 +23,7 @@
   <% else %>
     <p class="ml-2">レビューはありません。</p>
   <% end %>
+  <!--レビュー投稿エラーメッセージ-->
   <div class="review-error">
     <% if @review.errors.any? %>
       <%= @review.errors.count %>件のエラーが発生しました<br>
@@ -72,19 +73,25 @@
 
 <!-- 評価javascript -->
 <script>
-  $(document).on('turbolinks:load', function(){
-    $('#star-score-<%= @review.id %>').raty({
+<% @reviews.each do |review| %>
+  <% if review.score.present? %>
+    $('#star-score-<%= review.id %>').empty(); //星が重複しないようページ読み込み時に
+  <%end%>
+<%end%>
+$('.star1').empty();
+
+$(document).ready(function(){
+  <% @reviews.each do |review| %>
+    $('#star-score-<%= review.id %>').raty({
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
       starHalf: '<%= asset_path('star-half.png') %>',
       half: true,
       readOnly: true,
-      score: <%= @review.score %>
+      score: <%= review.score %>
     });
-  });
-
-$(document).on('turbolinks:load', function(){
-  $('.star1').empty(); //星の表示をリセット（星の増加防止）
+  <% end %>
+//  $('.star1').empty(); //星の表示をリセット（星の増加防止）
   $('.star1').raty({
     size: 36, //星のサイズ
     starOff:  '<%= asset_path('star-off.png') %>', //imagesフォルダから星画像を呼び出す（３種）
