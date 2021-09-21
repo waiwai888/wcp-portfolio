@@ -26,8 +26,15 @@
 
 <!--星評価-->
 <script>
+<% @camp_sites.each do |camp_site| %>
+  <% if camp_site.reviews.present? %>
+    $('#star-score-<%= camp_site.id %>').empty();
+  <%end%>
+<%end%>
+
+$(document).ready(function(){
   <% @camp_sites.each do |camp_site| %>
-    $(document).on('turbolinks:load', function(){
+  <% if camp_site.reviews.present? %>
       $('#star-score-<%= camp_site.id %>').raty({
         size: 36,
         starOff:  '<%= asset_path('star-off.png') %>',
@@ -37,6 +44,7 @@
         readOnly: true,
         score: <%= camp_site.reviews.average(:score) %>
       });
-    });
   <% end %>
+  <% end %>
+    });
 </script>
