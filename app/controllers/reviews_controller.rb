@@ -16,10 +16,28 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @camp_site = CampSite.find(params[:id])
+    @camp_site = CampSite.find(params[:camp_site_id])
     @review = Review.find(params[:id])
     @review.destroy
+    flash[:notice] = "レビューを削除しました"
     redirect_back(fallback_location: root_path)
+  end
+
+  def edit
+    @camp_site = CampSite.find(params[:camp_site_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @camp_site = CampSite.find(params[:camp_site_id])
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      flash[:notice] = "レビューを編集しました"
+      redirect_to camp_site_path(@camp_site.id)
+    else
+      @camp_site = CampSite.find(params[:camp_site_id])
+      render :edit
+    end
   end
 
   private
