@@ -2,6 +2,7 @@
   <table class="table">
     <thead>
       <th>サイト名</th>
+      <th>レビュー平均点</th>
     </thead>
     <tbody>
       <% @camp_sites.each do |camp_site| %>
@@ -13,7 +14,8 @@
           </td>
           <td>
             <% if camp_site.reviews.present? %>
-              <div id="star-score-<%= camp_site.id %>"></div> (<%= camp_site.reviews.average(:score) %>点)
+            <div id="star-score-<%= camp_site.id %>"></div>
+            <%= camp_site.reviews.count %>件の評価
             <% else %>
               <p>評価はまだありません</p>
             <% end %>
@@ -42,7 +44,7 @@ $(document).ready(function(){
         starHalf: '<%= asset_path('star-half.png') %>',
         half: true,
         readOnly: true,
-        score: <%= camp_site.reviews.average(:score) %>
+        score: <%= camp_site.reviews.average(:score).to_f.round(1) %>
       });
   <% end %>
   <% end %>

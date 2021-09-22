@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   resources :camp_sites, only: [:new, :create, :destroy, :index, :show]
   post 'camp_sites/:camp_site_id', to: 'reviews#create' , as: 'camp_site_reviews'
   delete 'camp_sites/:camp_site_id/:id', to: 'reviews#destroy' , as: 'camp_site_review'
+  get 'camp_sites/:camp_site_id/:id', to: 'reviews#edit'
+  patch 'camp_sites/:camp_site_id/:id', to: 'reviews#update' 
 
 end

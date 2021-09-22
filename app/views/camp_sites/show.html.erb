@@ -1,25 +1,46 @@
 <div class="container-fluid">
   <% if @reviews.present? %>
-    <table class="table reviews-table ml-2">
-      <% @reviews.each do |review| %>
-        <tr>
-          <th>投稿者</th>
-          <td class="text-center">
-            <%= link_to user_path(review.user) do %>
-              <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle d-block mx-auto img-fluid" %>
-            <% end %><br>
-            <%= link_to review.user.name, user_path(review.user) %>
-          </td>
+    <table class="table tbl-r05">
+      <thead>
+        <tr class="thead">
+          <th >投稿者</th>
           <th>評価</th>
-          <td><div id="star-score-<%= review.id %>"></div> (<%= review.score %>点)</td>
           <th>タイトル</th>
-          <td class="align-items-center"><%= review.title %></td>
-          <th>レビュー本文</th>
-          <td class="align-items-center"><%= review.body %></td>
+          <th>本文</th>
+          <th>投稿日時</th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td class="review-user" data-label="投稿者">
+              <%= link_to user_path(review.user) do %>
+                <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle img-fluid" %>
+              <% end %><br>
+              <%= link_to review.user.name, user_path(review.user) %>
+            </td>
+            <td class="review-score" data-label="評価">
+              <div id="star-score-<%= review.id %>"></div>
+              <% if review.user == current_user %>
+                <%= link_to camp_site_review_path(@camp_site.id, review.id) do %>
+                  <i class="fas fa-edit"></i>
+                <% end %> |
+                <%= link_to camp_site_review_path(@camp_site.id, review.id), method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="review-title" data-label="タイトル"><br><div class="text-left"><%= review.title %></div></td>
+            <td class="review-body" data-label="本文"><br><div class="text-left"><%= review.body %></div></td>
+            <td class="review-time" data-label="投稿日時"><%= review.created_at.strftime("%Y/%m/%d") %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
     </table>
-    <%= paginate(@reviews) %>
+    <div class="kaminari">
+      <%= paginate(@reviews) %>
+    </div>
   <% else %>
     <p class="ml-2">レビューはありません。</p>
   <% end %>
@@ -75,7 +96,7 @@
 <script>
 <% @reviews.each do |review| %>
   <% if review.score.present? %>
-    $('#star-score-<%= review.id %>').empty(); //星が重複しないようページ読み込み時に
+    $('#star-score-<%= review.id %>').empty(); //星が重複しないようページ読み込み時に星をリセット
   <%end%>
 <%end%>
 $('.star1').empty();
@@ -91,7 +112,6 @@ $(document).ready(function(){
       score: <%= review.score %>
     });
   <% end %>
-//  $('.star1').empty(); //星の表示をリセット（星の増加防止）
   $('.star1').raty({
     size: 36, //星のサイズ
     starOff:  '<%= asset_path('star-off.png') %>', //imagesフォルダから星画像を呼び出す（３種）

@@ -1,0 +1,56 @@
+<div class="container">
+  <h4 class="page-heading mr-2">レビュー編集</h4>
+  <div class="error-message mt-3 mb-3">
+    <% if @review.errors.any? %>
+      <%= @review.errors.count %>件のエラーが発生しました<br>
+      <% @review.errors.full_messages.each do |message| %>
+        ・<%= message %><br>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="ml-2 mr-2">
+    <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
+      <!--キャンプサイトidの送信-->
+      <%= f.hidden_field :camp_site_id, { value: @camp_site.id} %>
+      <div class="star-form-group row col-12 col-sm-12 col-md-10 d-block">
+        <%= f.label :score,'評価', class:'star-title col-md-3 col-form-label' %>
+        <div class="star1 d-block ml-2">
+          <%= f.hidden_field :score, class: "col-md-9" %>
+        </div>
+      </div>
+      <!-- 口コミ -->
+      <div class="form-group row col-12 col-sm-12 col-md-10 d-block">
+        <%= f.label :title, '件名 ', class:'col-md-3 col-form-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title, class: "form-control", rows: "8" %>
+        </div>
+      </div>
+      <div class="form-group row col-12 col-sm-12 col-md-10 d-block">
+        <%= f.label :body, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :body, class: "form-control", rows: "8" %>
+        </div>
+      </div>
+      <div class="review-update ml-3">
+        <%= f.submit '更新する', class: 'btn btn-success d-block mt-3' %>
+      </div>
+      <div class="camp_site-back mt-3 ml-3">
+        <%= link_to "<< back", camp_site_path(@camp_site.id) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+$('.star1').empty();
+$(document).ready(function(){
+  $('.star1').raty({
+    size: 36, //星のサイズ
+    starOff:  '<%= asset_path('star-off.png') %>', //imagesフォルダから星画像を呼び出す（３種）
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[score]',     //reviewモデルのscoreカラムに保存
+    half: true               //星半分を許可する。DBには0.5単位の数値が保存される
+  });
+});
+</script>
