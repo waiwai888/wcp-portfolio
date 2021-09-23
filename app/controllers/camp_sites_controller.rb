@@ -1,4 +1,5 @@
 class CampSitesController < ApplicationController
+  before_action :authenticate_user!
   
   def new
     @camp_site = CampSite.new
