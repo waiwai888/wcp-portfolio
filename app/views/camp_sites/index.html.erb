@@ -1,8 +1,10 @@
 <div class="container">
-  <table class="table">
+  <table class="table tbl-r04">
     <thead>
-      <th>サイト名</th>
-      <th>レビュー平均点</th>
+      <tr class="thead">
+        <th>サイト名</th>
+        <th>レビュー平均点</th>
+      </tr>
     </thead>
     <tbody>
       <% @camp_sites.each do |camp_site| %>
@@ -24,6 +26,9 @@
       <% end %>
     </tbody>
   </table>
+  <div class="kaminari">
+    <%= paginate(@camp_sites) %>
+  </div>
 </div>
 
 <!--星評価-->
