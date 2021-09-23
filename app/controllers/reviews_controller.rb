@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_post,only: [:edit, :update]
 
   def create
     @camp_site = CampSite.find(params[:camp_site_id])
@@ -44,6 +46,14 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:title, :camp_site_id, :body, :score)
+  end
+  
+  def ensure_correct_post
+    @review = Review.find(params[:id])
+    @user = @review.user
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
   end
 
 end
