@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <% if @reviews.present? %>
+    <table class="table tbl-r05">
+      <thead>
+        <tr class="thead">
+          <th >投稿者</th>
+          <th>評価</th>
+          <th>タイトル</th>
+          <th>本文</th>
+          <th>投稿日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td class="review-user" data-label="投稿者">
+              <%= link_to user_path(review.user) do %>
+                <%= attachment_image_tag review.user, :profile_image, :fill,65,65, fallback: "no_image.png", size: "65x65", class: "rounded-circle img-fluid" %>
+              <% end %><br>
+              <%= link_to review.user.name, user_path(review.user) %>
+            </td>
+            <td class="review-score" data-label="評価">
+              <div id="star-score-<%= review.id %>"></div>
+              <% if review.user == current_user %>
+                <%= link_to edit_camp_site_review_path(@camp_site.id, review.id) do %>
+                  <i class="fas fa-edit"></i>
+                <% end %> |
+                <%= link_to camp_site_review_path(@camp_site.id, review.id), method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="review-title" data-label="タイトル"><br><div class="text-left"><%= review.title %></div></td>
+            <td class="review-body" data-label="本文"><br><div class="text-left"><%= review.body %></div></td>
+            <td class="review-time" data-label="投稿日時"><%= review.created_at.strftime("%Y/%m/%d") %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="kaminari">
+      <%= paginate(@reviews) %>
+    </div>
+  <% else %>
+    <p class="ml-2">レビューはありません。</p>
+  <% end %>
+  <!--レビュー投稿エラーメッセージ-->
+  <div class="review-error">
+    <% if @review.errors.any? %>
+      <%= @review.errors.count %>件のエラーが発生しました<br>
+      <% @review.errors.full_messages.each do |message| %>
+        ・<%= message %><br>
+      <% end %>
+    <% end %>.
+  </div>
+  <!-- 口コミ入力フォーム -->
+  <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
+    <!--キャンプサイトidの送信-->
+    <%= f.hidden_field :camp_site_id, { value: @camp_site.id} %>
+    <div class="star-form-group row col-12 col-sm-12 col-md-10 d-block">
+      <%= f.label :score,'評価', class:'star-title col-md-3 col-form-label' %>
+      <div class="star1 d-block ml-2">
+        <%= f.hidden_field :score, id: :review_star, class: "col-md-9" %>
+      </div>
+    </div>
+
+    <!-- 口コミ -->
+    <div class="form-group row col-12 col-sm-12 col-md-10 d-block">
+      <%= f.label :title, 'タイトル', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :title, class: "form-control", rows: "8" %>
+      </div>
+    </div>
+    <div class="form-group row col-12 col-sm-12 col-md-10 d-block">
+      <%= f.label :body, '本文', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_area :body, class: "form-control", rows: "8", placeholder:'よかったこと、感想などレビューを書き込んでください' %>
+      </div>
+    </div>
+
+    <!-- 投稿ボタン -->
+    <div class="form-group row ml-2">
+      <div class="col-md-9">
+        <%= f.submit '投稿する', class:"btn btn-success d-block mt-3 mb-3" %>
+      </div>
+    </div>
+  <% end %>
+  <!--関連posts-->
+  <h4 class="page-heading"><%= @camp_site.site_name %>に関する投稿</h4>
+  <div class="row feeds-index">
+    <%= render 'posts/feeds', posts: @posts %>
+  </div>
+</div>
+
+<!-- 評価javascript -->
+<script>
+<% @reviews.each do |review| %>
+  <% if review.score.present? %>
+    $('#star-score-<%= review.id %>').empty(); //星が重複しないようページ読み込み時に星をリセット
+  <%end%>
+<%end%>
+$('.star1').empty();
+
+$(document).ready(function(){
+  <% @reviews.each do |review| %>
+    $('#star-score-<%= review.id %>').raty({
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= review.score %>
+    });
+  <% end %>
+  $('.star1').raty({
+    size: 36, //星のサイズ
+    starOff:  '<%= asset_path('star-off.png') %>', //imagesフォルダから星画像を呼び出す（３種）
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[score]',     //reviewモデルのscoreカラムに保存
+    half: true               //星半分を許可する。DBには0.5単位の数値が保存される
+  });
+});
+
+</script>

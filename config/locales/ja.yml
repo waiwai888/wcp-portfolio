@@ -7,6 +7,10 @@ ja:
       user:
         nickname: ニックネーム
         account_name: アカウント名
+      review:
+        title: タイトル
+        body: 本文
+        score: 評価
   datetime:
     distance_in_words:
       about_x_hours:

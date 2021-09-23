@@ -16,6 +16,7 @@
             <i class="fab fa-canadian-maple-leaf notification-icon" ></i>
           <% end %>
           <li><%= link_to '通知', user_notifications_path(current_user), class: 'btn-default nav-link'%></li>
+          <li><%= link_to 'サイトレビュー', camp_sites_path, class: 'nav-link'%></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
         <% else %>
           <li><%= link_to "Campistについて", "#{root_path}#about", class: 'nav-link' %></li>

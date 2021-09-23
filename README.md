@@ -13,10 +13,8 @@ dmを使用し、コミュニケーションをとることができます。
 
 ## サイトURL
 http://52.198.169.110/
-
-### テストアカウント
-- email: test1@test
-- password: test1@test
+（ゲストログイン機能あり）
+テストユーザー: id/pw test1@test
 
 ## 機能一覧
 - ユーザー登録・ログイン機能(devise)
@@ -47,7 +45,8 @@ https://docs.google.com/spreadsheets/d/1Jq56_Ko5ymBgjyjmGk8KeJUPmFzBYqclVHiHuVsO
 1人〜家族のキャンプ好きな一般ユーザー
 
 ## 主な利用シーン
-キャンプ場でのグッズの配置時やキャンプグッズを購入時にコーディネートを参考にレイアウトや服装、小物などを楽しめる
+キャンプ場でのグッズの配置時やキャンプグッズの購入時
+キャンプ場のリサーチ時など
 
 ## 設計書
 - フレームワーク：https://drive.google.com/file/d/1s3uLHHo8phah_HsUBP7ANJoqNmFi0AkH/view?usp=sharing
@@ -64,5 +63,6 @@ https://docs.google.com/spreadsheets/d/1Jq56_Ko5ymBgjyjmGk8KeJUPmFzBYqclVHiHuVsO
 
 ## 今後追加したい機能
 - レビュー機能（キャンプ場、雑貨などのクチコミ投稿）
-- 投稿画像拡張子統一(heicに対応)
-- ユーザーの導線を考慮したページ遷移・レイアウト
+- Twitterログイン機能
+- ブックマーク機能
+- RSpec(controller)

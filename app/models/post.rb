@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   belongs_to :user
+  belongs_to :camp_site, optional: true
 
   #タグ機能
   has_many :post_tags, dependent: :destroy
@@ -88,5 +89,5 @@ class Post < ApplicationRecord
     posts = Post.where(['body LIKE ?', '%'+content+'%'])
     return posts
   end
-  
+
 end
