@@ -2,6 +2,7 @@
 //   border-collapse: collapse;
 //   width: 100%;
 // }
+
 .review-user {
   width: 15%;
 }
@@ -25,6 +26,7 @@
 .tbl-r05 td:first-child {
   background: #fbf5f5;
 }
+// camp_site/show tableレスポンシブ
 @media screen and (max-width: 640px) {
   .tbl-r05 {
     width: 80%;
@@ -46,6 +48,35 @@
     text-align: center;
   }
   .tbl-r05 td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}
+
+// camp_site/index tableレスポンシブ
+@media screen and (max-width: 640px) {
+  .tbl-r04 {
+    width: 80%;
+  }
+  .tbl-r04 .thead {
+    display: none; //thは非表示
+  }
+  .tbl-r04 tr {
+    width: 100%;
+  }
+  .tbl-r04 td {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  .tbl-r04 td:first-child {
+    background: #F5F5F5;
+    font-weight: bold;
+    text-align: center;
+  }
+  .tbl-r04 td:before {
     content: attr(data-label);
     float: left;
     font-weight: bold;

@@ -11,7 +11,7 @@ class CampSitesController < ApplicationController
   end
   
   def index
-    @camp_sites = CampSite.all
+    @camp_sites = CampSite.page(params[:page]).per(5)
   end
   
   def show
