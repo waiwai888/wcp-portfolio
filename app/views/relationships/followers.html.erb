@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="page-heading">フォロワーユーザー</h4>
+  <h4 class="page-heading"><%= @user.name %>さんのフォロワー一覧</h4></h4>
   <% if @users.exists? %>
     <%= render 'users/index', users: @users %>
     <%= paginate @users %>
