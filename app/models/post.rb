@@ -32,10 +32,6 @@ class Post < ApplicationRecord
         action: 'favorite',
         checked: false
         )
-      # # いいねした人、された人が同一の場合、通知は確認済みとする
-      # if notification.visiter_id == notification.visited_id
-      #   notification.checked = true
-      # end
       notification.save if notification.valid?
     end
   end
@@ -59,10 +55,6 @@ class Post < ApplicationRecord
       action: 'comment',
       checked: false
     )
-    # # 自分の投稿に対するコメントの場合は、通知済みとする
-    # if notification.visiter_id == notification.visited_id
-    #   notification.checked = true
-    # end
     notification.save! if notification.valid?
   end
 

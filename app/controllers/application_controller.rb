@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
     posts_followed_index_path
   end
 
-#  unless Rails.configuration.consider_all_requests_local
+  unless Rails.configuration.consider_all_requests_local
     rescue_from Exception,                      with: :_render_500
     rescue_from ActiveRecord::RecordNotFound,   with: :_render_404
     rescue_from ActionController::RoutingError, with: :_render_404
-#  end
+  end
 
   def render_404
     _render_404()
