@@ -6,7 +6,7 @@ on: #mainのブランチにプッシュされた時
 
 jobs: #処理のかたまり（仮想環境単位）を宣言
   build: #ジョブ名 任意
-    runs-on: ubuntu-lates #処理を実行する環境
+    runs-on: ubuntu-latest #処理を実行する環境
     steps: #ジョブが行う処理の集合を宣言
     - uses: actions/checkout@v2 #githubが提供しているアクション リポジトリをチェックアウトする処理がまとめられている
     - name: Deploy #steps名 任意
