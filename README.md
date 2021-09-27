@@ -63,6 +63,4 @@ https://docs.google.com/spreadsheets/d/1Jq56_Ko5ymBgjyjmGk8KeJUPmFzBYqclVHiHuVsO
 
 ## 今後追加したい機能
 - レビュー機能（キャンプ場、雑貨などのクチコミ投稿）
-- Twitterログイン機能
-- ブックマーク機能
 - RSpec(controller)
