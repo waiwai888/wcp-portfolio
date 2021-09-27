@@ -17,8 +17,8 @@ jobs: #処理のかたまり（仮想環境単位）を宣言
       #コマンド使用時にrunは使用
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd アプリケーション名 &&
-        git pull origin ブランチ名 &&
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd wcp-portfolio-Campist &&
+        git pull origin main &&
         ~/.rbenv/shims/bundle install &&
         ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
         ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
