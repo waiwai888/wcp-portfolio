@@ -1,0 +1,26 @@
+name: Rails CI/CD
+
+on: #mainのブランチにプッシュされた時
+  push:
+    branches: [main] #ワークフロー名 任意
+
+jobs: #処理のかたまり（仮想環境単位）を宣言
+  build: #ジョブ名 任意
+    runs-on: ubuntu-lates #処理を実行する環境
+    steps: #ジョブが行う処理の集合を宣言
+    - uses: actions/checkout@v2 #githubが提供しているアクション リポジトリをチェックアウトする処理がまとめられている
+    - name: Deploy #steps名 任意
+      env: #使用する環境変数を指定 特定のジョブのみ、使用できるように範囲を限定することも可能
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        USER_NAME: ${{ secrets.USER_NAME }}
+        HOST_NAME: ${{ secrets.HOST_NAME }}
+      #コマンド使用時にrunは使用
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd アプリケーション名 &&
+        git pull origin ブランチ名 &&
+        ~/.rbenv/shims/bundle install &&
+        ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
+        ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
+        if [[ -e tmp/pids/puma.pid ]];then sudo kill $(cat tmp/pids/puma.pid); echo kill puma process;fi &&
+        ~/.rbenv/shims/rails s -e production'
