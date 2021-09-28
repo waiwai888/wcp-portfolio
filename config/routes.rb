@@ -42,7 +42,11 @@ Rails.application.routes.draw do
   get 'camp_sites/:camp_site_id/:id/edit', to: 'reviews#edit', as: 'edit_camp_site_review'
   patch 'camp_sites/:camp_site_id/:id', to: 'reviews#update'
 
-  get '*path', to: 'application#render_404', constraints: ErrorAvoid.new 
+  resources :regions, only: [:index, :show]
+  get 'regions/:id/camp_sites', to: 'regions#camp_site', as: 'regions_camp_sites'
+  get '*path', to: 'application#render_404', constraints: ErrorAvoid.new
+
+
 
 
 end

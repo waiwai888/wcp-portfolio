@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_02_124717) do
+ActiveRecord::Schema.define(version: 2021_09_28_110619) do
 
   create_table "camp_sites", force: :cascade do |t|
     t.string "site_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "region_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -66,6 +67,13 @@ ActiveRecord::Schema.define(version: 2021_09_02_124717) do
     t.string "image_id"
     t.text "body"
     t.integer "camp_site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

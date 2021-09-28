@@ -12,7 +12,8 @@ class CampSitesController < ApplicationController
   end
   
   def index
-    @camp_sites = CampSite.page(params[:page]).per(5)
+    @reigion = Region.find(params[:id])
+    @camp_sites = CampSite.where(region_id: params[:id]).page(params[:page]).per(5)
   end
   
   def show
