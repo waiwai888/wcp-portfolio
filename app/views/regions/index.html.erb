@@ -1,0 +1,5 @@
+<p>regions/indexページ</p>
+
+<% @regions.each do |region| %>
+  <%= link_to region.name, region_path(region.id) %>
+<% end %>
