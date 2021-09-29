@@ -3,25 +3,22 @@ class PostsController < ApplicationController
   before_action :ensure_correct_post,only: [:edit, :update]
 
   def new
+    @regions = Region.where.not(ancestry: nil)
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
     tag_list = params[:post][:tag_name].split(",") #送られてきた値を,で区切って配列化
-    if params[:post][:site_name]
-      @camp_site = CampSite.where(site_name: params[:post][:site_name]).first
-      if @camp_site == nil
-        @camp_site = CampSite.new(camp_site_params)
-        @camp_site.save
-      end
+    if !params[:post][:camp_site_id].blank? #region_idがブランク（選択してくださいのまま）である場合は@post.saveのバリデーションで弾く
+      @camp_site = CampSite.where(id: params[:post][:camp_site_id]).first
       @post.camp_site_id = @camp_site.id
     end
-    if @post.save!
+    if @post.save
       @post.save_tag(tag_list)
       redirect_to posts_path, notice: "投稿しました"
     else
+      @regions = Region.where.not(ancestry: nil)
       render :new
     end
   end
@@ -53,7 +50,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
+    if @post.update(post_params)# && @post.user_id == current_user.id
       tag_list = params[:post][:tag_name].split(",")
       @post.save_tag(tag_list)
       redirect_to post_path(@post), notice: "投稿を更新しました"
@@ -66,7 +63,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
+    @post.destroy# if @post.user_id == current_user.id
     redirect_to posts_path
   end
 
@@ -79,7 +76,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body)
+    params.require(:post).permit(:image, :body).merge(user_id: current_user.id)
   end
 
   def ensure_correct_post
@@ -91,7 +88,7 @@ class PostsController < ApplicationController
   end
 
   def camp_site_params
-    params.require(:post).permit(:site_name)
+    params.require(:post).permit(:camp_site_id)
   end
 
 end

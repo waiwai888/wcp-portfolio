@@ -23,8 +23,7 @@
         <%= f.text_field :tag_name, placeholder: '例）キャンプ飯,男飯', class: "form-control" %>
       </div>
       <div class="field row col-sm-12 col-md-6 d-block">
-        <%= f.label :site_name, "キャンプサイト名", class: "mt-3",  placeholder: "例）ほったらかしキャンプ場" %>
-        <%= f.text_area :site_name, class: "form-control" %>
+        <%= f.select :camp_site_id, grouped_options_for_select(@regions.map { |p| [ p.name, p.camp_sites.map { |c| [c.site_name, c.id]} ]}), prompt: "選択してください" %>
       </div>
       <div class="field row col-sm-12 col-md-6 d-block">
         <%= f.submit '投稿', class: 'btn btn-success mt-3' %>

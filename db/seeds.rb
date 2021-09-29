@@ -119,10 +119,9 @@ CampSite.create!(
       {site_name: "朝霧高原キャンプ場", region_id: 30, id: 3},
       {site_name: "長瀞オートキャンプ場", region_id: 40, id: 4},
       {site_name: "一番星ヴィレッジ", region_id: 48, id: 5},
-      {site_name: "イレブンオートキャンプパーク", region_id: 58, id: 6}
+      {site_name: "イレブンオートキャンプパーク", region_id: 55, id: 6}
       ]
     )
-    byebug
 
 Post.create!(
   [
@@ -226,5 +225,4 @@ Relationship.create!(
     {follower_id: '4', followed_id: '3', id: 10}
     ]
   )
-  
-  
+

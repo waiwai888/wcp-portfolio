@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get 'search', to: 'posts#search'
   end
 
-  resources :camp_sites, only: [:new, :create, :destroy, :index, :show]
+  resources :camp_sites, only: [:new, :create, :destroy, :show]
   post 'camp_sites/:camp_site_id', to: 'reviews#create' , as: 'camp_site_reviews'
   delete 'camp_sites/:camp_site_id/:id', to: 'reviews#destroy' , as: 'camp_site_review'
   get 'camp_sites/:camp_site_id/:id/edit', to: 'reviews#edit', as: 'edit_camp_site_review'

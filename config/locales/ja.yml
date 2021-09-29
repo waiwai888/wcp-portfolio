@@ -4,6 +4,7 @@ ja:
       post:
         body: 投稿本文
         image: 画像
+        camp_site_id: キャンプサイト
       user:
         nickname: ニックネーム
         account_name: アカウント名
@@ -11,6 +12,9 @@ ja:
         title: タイトル
         body: 本文
         score: 評価
+      camp_site:
+        region_id: 地域
+        site_name: キャンプサイト名
   datetime:
     distance_in_words:
       about_x_hours:

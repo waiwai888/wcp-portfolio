@@ -8,16 +8,30 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto mr-3">
         <% if user_signed_in? %>
-          <li><%= link_to '新しく投稿', new_post_path,class: 'nav-link'%></li>
-          <li><%= link_to 'マイページ', user_path(current_user), class: 'nav-link'%></li>
-          <li><%= link_to 'みんなの投稿', posts_followed_index_path, class: 'nav-link '%></li>
-          <li><%= link_to '世界の新着', posts_path, class: 'nav-link '%></li>
+          <li>
+            <%= link_to new_post_path,class: 'nav-link' do %>
+              <i class="fas fa-feather"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(current_user), class: 'nav-link' do %>
+              <i class="fas fa-home"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to 'みんなの投稿', posts_followed_index_path, class: 'nav-link '%>
+          </li>
+          <li>
+            <%= link_to posts_path, class: 'nav-link' do %>
+              <i class="fas fa-crown"></i>
+            <% end %>
+          </li>
           <% if unchecked_notifications.any? %>
             <i class="fab fa-canadian-maple-leaf notification-icon" ></i>
           <% end %>
           <li><%= link_to '通知', user_notifications_path(current_user), class: 'btn-default nav-link'%></li>
           <li>
-            <%= link_to camp_sites_path, class: 'nav-link' do %>
+            <%= link_to regions_path, class: 'nav-link' do %>
               <i class="fas fa-campground"></i>
             <% end %>
           </li>
