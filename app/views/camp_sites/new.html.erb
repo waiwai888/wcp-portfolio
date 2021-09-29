@@ -1,7 +1,18 @@
 <div class="container">
   <h4 class="page-heading mr-2">New CampSite</h4>
+  <div class="error-message mt-3 mb-3">
+    <% if @camp_site.errors.any? %>
+      <%= @camp_site.errors.count %>件のエラーが発生しました<br>
+      <% @camp_site.errors.full_messages.each do |message| %>
+        ・<%= message %><br>
+      <% end %>
+    <% end %>
+  </div>
   <div class="ml-2 mr-2">
     <%= form_with model: @camp_site, local:true do |f| %>
+    <div class="field row col-sm-12 col-md-6 d-block">
+      <%= f.select :region_id, grouped_options_for_select(@regions.map { |p| [ p.name, p.children.map { |c| [c.name, c.id]} ]}), prompt: "選択してください" %>
+    </div>
     <div class="field row col-sm-12 col-md-6 d-block">
       <%= f.label :site_name, "サイト名", class: "mt-3" %>
       <%= f.text_field :site_name, class: "form-control" %>
