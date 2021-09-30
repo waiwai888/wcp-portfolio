@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="ml-2 mr-2">
-    <%= form_with(model:[@camp_site, @review], local: true) do |f| %>
+    <%= form_with(model: [@camp_site, @review], url: update_camp_site_review_path, local: true) do |f| %>
       <!--キャンプサイトidの送信-->
       <%= f.hidden_field :camp_site_id, { value: @camp_site.id} %>
       <div class="star-form-group row col-12 col-sm-12 col-md-10 d-block">

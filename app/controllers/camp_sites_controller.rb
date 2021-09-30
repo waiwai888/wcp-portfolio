@@ -5,7 +5,7 @@ class CampSitesController < ApplicationController
     @camp_site = CampSite.new
     @regions = Region.where(ancestry: nil)
   end
-  
+
   def index
     @region = Region.find_by(id: params[:region_id])
     @camp_sites = CampSite.where(region_id: @region.id).page(params[:page]).per(5) #都道府県（子）に紐づくキャンプサイトを取得
