@@ -35,15 +35,15 @@ Rails.application.routes.draw do
   resources :tags do
     get 'search', to: 'posts#search'
   end
-
-  resources :camp_sites, only: [:new, :create, :destroy, :show]
+  
   post 'camp_sites/:camp_site_id', to: 'reviews#create' , as: 'camp_site_reviews'
   delete 'camp_sites/:camp_site_id/:id', to: 'reviews#destroy' , as: 'camp_site_review'
   get 'camp_sites/:camp_site_id/:id/edit', to: 'reviews#edit', as: 'edit_camp_site_review'
   patch 'camp_sites/:camp_site_id/:id', to: 'reviews#update'
 
-  resources :regions, only: [:index, :show]
-  get 'regions/:id/camp_sites', to: 'regions#camp_site', as: 'regions_camp_sites'
+  resources :regions, only: [:index, :show] do
+    resources :camp_sites, only: [:new, :index, :create, :destroy, :show]
+  end
   get '*path', to: 'application#render_404', constraints: ErrorAvoid.new
 
 
