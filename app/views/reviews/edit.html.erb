@@ -35,7 +35,7 @@
         <%= f.submit '更新する', class: 'btn btn-success d-block mt-3' %>
       </div>
       <div class="camp_site-back mt-3 ml-3">
-        <%= link_to "<< back", camp_site_path(@camp_site.id) %>
+        <%= link_to "<< back", region_camp_site_path(@region.id, @camp_site.id) %>
       </div>
     <% end %>
   </div>
