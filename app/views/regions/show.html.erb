@@ -1,0 +1,10 @@
+<div class="container">
+  <h4 class="page-heading">都道府県一覧</h4>
+  <table class="table">
+    <% @regions.each do |region| %>
+      <tr>
+        <td><%= link_to region.name, region_camp_sites_path(region.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

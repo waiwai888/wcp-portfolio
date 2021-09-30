@@ -1,31 +1,36 @@
 <div class="container">
-  <table class="table tbl-r04">
-    <thead>
-      <tr class="thead">
-        <th>サイト名</th>
-        <th>レビュー平均点</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @camp_sites.each do |camp_site| %>
-        <tr>
-          <td>
-            <%= link_to camp_site_path(camp_site) do %>
-              <%= camp_site.site_name %>
-            <% end %>
-          </td>
-          <td>
-            <% if camp_site.reviews.present? %>
-            <div id="star-score-<%= camp_site.id %>"></div>
-            <%= camp_site.reviews.count %>件の評価
-            <% else %>
-              <p>評価はまだありません</p>
-            <% end %>
-          </td>
+  <% if @camp_sites.present? %>
+    <table class="table tbl-r04">
+      <thead>
+        <tr class="thead">
+          <th>キャンプサイト名</th>
+          <th>レビュー平均点</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @camp_sites.each do |camp_site| %>
+          <tr>
+            <td>
+              <%= link_to camp_site_path(camp_site) do %>
+                <%= camp_site.site_name %>
+              <% end %>
+            </td>
+            <td>
+              <% if camp_site.reviews.present? %>
+                <div id="star-score-<%= camp_site.id %>"></div>
+                <%= camp_site.reviews.count %>件の評価
+              <% else %>
+                <p>評価はまだありません</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>登録されているキャンプサイトがありません</p>
+    <p>キャンプサイトのご登録は<%= link_to "こちら", new_region_camp_site_path %></p>
+  <% end %>
   <div class="kaminari">
     <%= paginate(@camp_sites) %>
   </div>
