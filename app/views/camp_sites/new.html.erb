@@ -13,7 +13,7 @@
     <p>該当のキャンプサイトが未登録である場合は、下記フォームからご登録をお願いします。</p>
   </div>
   <div class="ml-2 mr-2">
-    <%= form_with model: @camp_site, url: new_region_camp_site_path, local:true do |f| %>
+    <%= form_with model: @camp_site, url: region_camp_sites_path, local:true do |f| %>
     <div class="field row col-sm-12 col-md-6 d-block">
       <%= f.label :region_id, "都道府県", class: "mt-3" %>
       <%= f.select :region_id, grouped_options_for_select(@regions.map { |p| [ p.name, p.children.map { |c| [c.name, c.id]} ]}), prompt: "選択してください" %>

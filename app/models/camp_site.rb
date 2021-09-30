@@ -4,5 +4,4 @@ class CampSite < ApplicationRecord
   belongs_to :region
   
   validates :site_name, presence: true
-  validates :region_id, presence: true
 end

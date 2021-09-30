@@ -22,10 +22,10 @@
             <td class="review-score" data-label="評価">
               <div id="star-score-<%= review.id %>"></div>
               <% if review.user == current_user %>
-                <%= link_to edit_camp_site_review_path(@camp_site.id, review.id) do %>
+                <%= link_to edit_camp_site_review_path(@region.id, @camp_site.id, review.id) do %>
                   <i class="fas fa-edit"></i>
                 <% end %> |
-                <%= link_to camp_site_review_path(@camp_site.id, review.id), method: :delete, data: { confirm: '本当に消しますか？' } do %>
+                <%= link_to camp_site_review_path(@region.id, @camp_site.id, review.id), method: :delete, data: { confirm: '本当に消しますか？' } do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               <% end %>

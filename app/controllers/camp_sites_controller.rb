@@ -27,6 +27,7 @@ class CampSitesController < ApplicationController
   end
 
   def show
+    @region = Region.find_by(id: params[:region_id])
     @camp_site = CampSite.find(params[:id])
     @reviews = @camp_site.reviews.page(params[:page]).per(5)
     @review = Review.new

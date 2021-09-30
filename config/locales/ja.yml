@@ -13,6 +13,7 @@ ja:
         body: 本文
         score: 評価
       camp_site:
+        region: 地域
         region_id: 地域
         site_name: キャンプサイト名
   datetime:
