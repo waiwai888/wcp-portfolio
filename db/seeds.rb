@@ -225,4 +225,3 @@ Relationship.create!(
     {follower_id: '4', followed_id: '3', id: 10}
     ]
   )
-
