@@ -10,38 +10,57 @@
         <% if user_signed_in? %>
           <li>
             <%= link_to new_post_path,class: 'nav-link' do %>
-              <i class="fas fa-feather"></i>
+              投稿する<i class="fas fa-edit"></i>
             <% end %>
           </li>
+          <!--フォローユーザー投稿一覧-->
           <li>
-            <%= link_to user_path(current_user), class: 'nav-link' do %>
-              <i class="fas fa-home"></i>
+            <%= link_to posts_followed_index_path, class: 'nav-link' do %>
+              <i class="fas fa-users"></i>
             <% end %>
-          </li>
-          <li>
-            <%= link_to 'みんなの投稿', posts_followed_index_path, class: 'nav-link '%>
           </li>
           <li>
             <%= link_to posts_path, class: 'nav-link' do %>
-              <i class="fas fa-crown"></i>
+              <i class="fas fa-rss"></i>
             <% end %>
           </li>
-          <% if unchecked_notifications.any? %>
-            <i class="fab fa-canadian-maple-leaf notification-icon" ></i>
-          <% end %>
-          <li><%= link_to '通知', user_notifications_path(current_user), class: 'btn-default nav-link'%></li>
+          <!--キャンプサイト一覧-->
           <li>
             <%= link_to regions_path, class: 'nav-link' do %>
               <i class="fas fa-campground"></i>
             <% end %>
           </li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
+          <!--通知-->
+          <% if unchecked_notifications.any? %>
+            <i class="fas fa-circle notification-icon" ></i>
+          <% end %>
+          <li>
+            <%= link_to user_notifications_path(current_user), class: 'btn-default nav-link' do %>
+              <i class="fas fa-bell"></i>
+            <% end %>
+          </li>
+          <!--マイページ-->
+          <li>
+            <%= link_to user_path(current_user), class: 'nav-link' do %>
+              <i class="fas fa-home"></i>
+            <% end %>
+          </li>
+          <!--ログアウト-->
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+              <i class="fas fa-sign-out-alt"></i>
+            <% end %>
+          </li>
         <% else %>
           <li><%= link_to "Campistについて", "#{root_path}#about", class: 'nav-link' %></li>
           <li><%= link_to "どんなサービス？", "#{root_path}#feature", class: 'nav-link' %></li>
           <li><%= link_to "お問い合わせ", "#{root_path}#contact", class: 'nav-link' %></li>
           <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-link'%></li>
-          <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-link'%></li>
+          <li>
+            <%= link_to new_user_session_path, class: 'nav-link' do %>
+              <i class="fas fa-sign-in-alt"></i>
+            <% end %>
+          </li>
         <% end %>
         </ul>
         <ul class="navbar-nav">

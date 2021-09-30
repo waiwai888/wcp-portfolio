@@ -8,9 +8,4 @@ class RegionsController < ApplicationController
     @regions = Region.find(params[:id]).children #地方(親)に紐づく都道府県（子）のレコードを取得
   end
   
-  def camp_site
-    @region = Region.find(params[:id]) #showから子のidを受け取りfind
-    @camp_sites = CampSite.where(region_id: @region.id).page(params[:page]).per(5) #都道府県（子）に紐づくキャンプサイトを取得
-  end
-  
 end
