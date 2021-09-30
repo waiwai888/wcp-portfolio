@@ -52,7 +52,7 @@
         <div class="row col-md-12 col-lg-11 col-xl-9 mt-3">
           <div class="post-detaile">
             <div class="posts-camp_site">
-              <i class="fas fa-map-marker-alt"></i> <%= link_to @post.camp_site.site_name, camp_site_path(@post.camp_site) %>
+              <i class="fas fa-map-marker-alt"></i> <%= link_to @post.camp_site.site_name, region_camp_site_path(@post.camp_site.region.id, @post.camp_site.id) %>
             </div>
             <div class="post-content mt-2">
               <%= @post.body %>
