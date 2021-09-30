@@ -19,7 +19,7 @@ class CampSitesController < ApplicationController
       @camp_site.region_id = @region.id #region_idに入れて保存
     end
     if @camp_site.save
-      redirect_to camp_site_path(@camp_site)
+      redirect_to region_camp_site_path(@region, @camp_site)
     else
       @regions = Region.where(ancestry: nil)
       render :new
