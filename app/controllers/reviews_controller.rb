@@ -6,9 +6,10 @@ class ReviewsController < ApplicationController
     @camp_site = CampSite.find(params[:review][:camp_site_id])
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    @region = Region.find_by(id: params[:region_id])
     if @review.save
       flash[:notice] = "レビューを投稿しました"
-      render :show
+      redirect_to region_camp_site_path(region_id: @region.id, id: @camp_site.id)
     else
       @camp_site = CampSite.find(params[:review][:camp_site_id])
       @reviews = @camp_site.reviews.page(params[:page]).per(5)
@@ -33,7 +34,7 @@ class ReviewsController < ApplicationController
 
   def update
     @region = Region.find_by(id: params[:region_id])
-    @camp_site = CampSite.find(params[:camp_site_id])
+    @camp_site = CampSite.find(params[:review][:camp_site_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
       flash[:notice] = "レビューを編集しました"
@@ -49,7 +50,7 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:title, :camp_site_id, :body, :score)
   end
-  
+
   def ensure_correct_post
     @review = Review.find(params[:id])
     @user = @review.user
