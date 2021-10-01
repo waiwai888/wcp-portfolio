@@ -34,8 +34,10 @@
   <div class="kaminari">
     <%= paginate(@camp_sites) %>
   </div>
+  <div class="page-back mt-2 ml-3">
+    <%= link_to "<<戻る", regions_path %>
+  </div>
 </div>
-
 <!--星評価-->
 <script>
 <% @camp_sites.each do |camp_site| %>
