@@ -76,8 +76,26 @@ describe '投稿のテスト' do
         visit root_path
       end
       context '表示の確認' do
-        it 'トップ画面(root_path)に一覧ページへのリンクが表示されているか' do
+        it 'トップ画面(root_path)にフォロワーの投稿一覧ページへのリンクが表示されているか' do
           expect(page).to have_link "", href: posts_index_path
+        end
+        it 'トップ画面(root_path)に全ユーザーの投稿一覧ページへのリンクが表示されているか' do
+          expect(page).to have_link "", href: posts_path
+        end
+        it 'トップ画面(root_path)に通知一覧へのリンクが表示されているか' do
+          expect(page).to have_link "", href: notifications_path
+        end
+        it 'トップ画面(root_path)にマイページへのリンクが表示されているか' do
+          expect(page).to have_link "", href: user_path(@user)
+        end
+        it 'トップ画面(root_path)に新規投稿へのリンクが表示されているか' do
+          expect(page).to have_link "", href: new_post_path
+        end
+        it 'トップ画面(root_path)にキャンプサイト一覧へのリンクが表示されているか' do
+          expect(page).to have_link "", href: regions_path
+        end
+        it 'トップ画面(root_path)にログアウトへのリンクが表示されているか' do
+          expect(page).to have_link "", href: destroy_user_session_path
         end
         it 'root_pathが"/"であるか' do
           expect(current_path).to eq('/')
@@ -86,7 +104,7 @@ describe '投稿のテスト' do
     end
     describe "一覧画面のテスト" do
       before do
-        visit books_path
+        visit posts_path
       end
       context '一覧の表示とリンクの確認' do
         it "postの画像とユーザー名を表示し、showリンクが表示されているか" do
@@ -96,7 +114,7 @@ describe '投稿のテスト' do
             visit posts_path
             Post.all.each_with_index do |post,i|
               j = i * 3
-              expect(page).to have_content post.title
+              expect(page).to have_content post.image
               expect(page).to have_content post.body
               # Showリンク
               show_link = find_all('a')[j]
