@@ -137,10 +137,9 @@ describe '投稿のテスト' do
           expect(current_path).to eq('/posts/:id')
         end
         it '投稿後のリダイレクト先は正しいか' do
-          fill_in 'book[title]', with: Faker::Lorem.characters(number:5)
-          fill_in 'book[body]', with: Faker::Lorem.characters(number:20)
-          click_button 'Create Book'
-          expect(page).to have_current_path book_path(Book.last)
+          fill_in 'post[body]', with: Faker::Lorem.characters(number:20)
+          click_button '投稿する'
+          expect(page).to have_current_path book_path(Post.last)
         end
       end
       context 'book削除のテスト' do
